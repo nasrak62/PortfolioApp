@@ -1,18 +1,10 @@
 import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 import { createCanvas } from "utils/canvas";
 
 import { StyledHomePage, classes } from "./HomePage.styles";
 
 const HomePage = () => {
   const canvasRef = useRef(null);
-
-  const variants = {
-    hidden: { opacity: 0, scale: 1 },
-    visible: { opacity: 1, scale: 1.1, drag: "x" },
-  };
-
-  console.log(canvasRef);
 
   useEffect(() => {
     if (canvasRef?.current) {

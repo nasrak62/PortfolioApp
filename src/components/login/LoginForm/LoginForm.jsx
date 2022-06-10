@@ -42,7 +42,7 @@ const LoginForm = ({
             attr={attr}
             type={attr}
             value={user?.[attr]}
-            handleChange={handleChange}
+            onChange={handleChange}
             keyProp={`${buttonText}-input-${capitalize(attr)}`}
             key={`${buttonText}-Input-${capitalize(attr)}`}
           />

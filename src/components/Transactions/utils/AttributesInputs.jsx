@@ -46,7 +46,7 @@ const AttributesInputs = ({
               attr={attr}
               type={getInputType(attr)}
               value={value}
-              handleChange={handleChange}
+              onChange={handleChange}
               pattern={
                 attr === "price"
                   ? "^(([0-9]+(.))|([0-9]+(.)[0-9]+)|[0-9]+)$"

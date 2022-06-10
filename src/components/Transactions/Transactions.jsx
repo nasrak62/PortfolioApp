@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState, useEffect } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import isEqual from "lodash/isEqual";
@@ -25,7 +25,10 @@ const Transactions = () => {
     `by_date=${year}-${month.value}-[0-9]{2}`
   );
 
-  const [transactions, setTransactions, error, setErrors] = useFetchData(url);
+  const [transactions, setTransactions, error, setErrors] = useFetchData(
+    url,
+    "transactions"
+  );
 
   const [displayType, setDisplayType] = useState(TRANSACTIONS_TYPE[0]);
 

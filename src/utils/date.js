@@ -1,5 +1,5 @@
 export const formatDate = (stringDate) => {
-  const date = new Date(stringDate);
+  const date = stringDate ? new Date(stringDate) : new Date();
 
   const day = date.getDate();
   const dayString = day < 10 ? `0${day}` : `${day}`;
@@ -43,4 +43,10 @@ export const MONTHS = {
   December: "12",
 };
 
+export const DAYS = {
+  DAY: 1,
+  WEEK: 7,
+  MONTH: 30,
+  YEAR: 365,
+};
 export const YEARS = ["2022"];

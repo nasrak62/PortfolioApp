@@ -70,6 +70,8 @@ const NavBar = observer(() => {
           ifTrue={
             <>
               {motionLink("Transactions", "/transactions")}
+              {motionLink("Weights", "/weights")}
+              {motionLink("Foods", "/foods")}
               {motionLink("icon", "/transactions")}
               {motionLink("Sign Out", "/", logout)}
             </>

@@ -43,14 +43,15 @@ const parseNumeric = (value) => {
 };
 
 export const validate = (type, newValue, oldValue) => {
-  let useNewValue = null;
+  const emptyString = newValue === "";
+  const valueExist = Boolean(newValue) || emptyString;
+  let useNewValue = valueExist;
 
-  if (type === "numeric") {
-    useNewValue = Boolean(newValue && validateNumberInput(newValue));
+  if (type === "numeric" && !emptyString) {
+    useNewValue = Boolean(valueExist && validateNumberInput(newValue));
     return useNewValue ? parseNumeric(newValue) : oldValue;
   }
 
-  useNewValue = Boolean(newValue);
   return useNewValue ? newValue : oldValue;
 };
 
@@ -98,13 +99,16 @@ export const validateFinalParams = (params, setErrors) => {
 
 export const handleInputChange = (e, attr, properties, setProperties) => {
   const newValue = e?.target?.value;
+  const emptyString = newValue === "";
+  const valueExist = Boolean(newValue) || emptyString;
+
   const value = validate(
     properties[attr]?.validation,
     newValue,
     properties[attr]?.value
   );
 
-  if (value && value !== properties[attr]?.value) {
+  if (valueExist && value !== properties[attr]?.value) {
     setProperties((prevState) => {
       return { ...prevState, [attr]: { ...prevState[attr], value: value } };
     });

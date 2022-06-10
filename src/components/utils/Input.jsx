@@ -1,12 +1,27 @@
+import noop from "lodash/noop";
+import { useCallback } from "react";
+import { handleInputChange } from "utils/input";
+
 const Input = ({
   classes,
   attr,
   pattern = null,
   type,
   value,
-  handleChange,
+  onChange = null,
   keyProp,
+  data = null,
+  setData = noop,
 }) => {
+  const makeChange = useCallback(
+    (e, attr, options = null) => {
+      return handleInputChange(e, attr, data, setData);
+    },
+    [data, setData]
+  );
+
+  const handleChange = onChange || makeChange;
+
   if (pattern) {
     return (
       <input
