@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import { objectHasEmpty } from "utils/objects";
 import { deleteJson, getJson, patchJson, postJson } from "utils/request";
 
@@ -40,24 +41,29 @@ const handleMethod = async (url, method, paramsObj) => {
   }
 };
 
-export const crud = async (method, paramsObj = null, url, name) => {
-  const result = handleMethod(url, method, paramsObj);
+export const crud = async (method, url, name, paramsObj = null) => {
+  try {
+    const result = await handleMethod(url, method, paramsObj);
 
-  const { created: data, errors } = result;
+    const { created: data, errors } = result;
 
-  if (!errors) {
-    return { created: data?.[name], errors: errors };
+    if (!errors) {
+      return { created: data?.[name], errors: errors };
+    }
+
+    return result;
+  } catch (error) {
+    console.log(error);
+    return { created: null, errors: "error" };
   }
-
-  return result;
 };
 
 export const create = async (paramsObj, url, name) => {
-  return await crud("post", paramsObj, url, name);
+  return await crud("post", url, name, paramsObj);
 };
 
 export const update = async (paramsObj, url, name) => {
-  return await crud("patch", paramsObj, url, name);
+  return await crud("patch", url, name, paramsObj);
 };
 
 export const read = async (url, name) => {
@@ -66,4 +72,26 @@ export const read = async (url, name) => {
 
 export const destroy = async (url, name) => {
   return await crud("delete", url, name);
+};
+
+export const destroyAndGetUpdatedData = async (
+  deleteUrl,
+  deleteName,
+  getUrl,
+  getName,
+  setData
+) => {
+  const result = await destroy(deleteUrl, deleteName);
+
+  if (!isEmpty(result?.errors)) {
+    return result;
+  }
+
+  const getResult = await read(getUrl, getName);
+
+  if (!isEmpty(getResult?.errors) || !getResult?.created) {
+    return result;
+  }
+
+  return setData(getResult?.created);
 };

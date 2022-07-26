@@ -13,6 +13,8 @@ import EditWeight from "components/weights/EditWeight/EditWeight";
 import Foods from "components/foods/Foods";
 import NewFood from "components/foods/create/NewFood";
 import EditFood from "components/foods/update/EditFood";
+import Meals from "components/meals/Meals";
+import NewMeal from "components/meals/create/NewMeal";
 
 const AppRoutes = observer(({ store }) => {
   const loggedIn = store?.token && store?.loggedIn;
@@ -28,6 +30,8 @@ const AppRoutes = observer(({ store }) => {
         <Route exact path="/foods" element={<Foods />} />
         <Route exact path="/foods/new" element={<NewFood />} />
         <Route exact path="/foods/edit/:id" element={<EditFood />} />
+        <Route exact path="/meals" element={<Meals />} />
+        <Route exact path="/meals/new" element={<NewMeal />} />
       </>
     );
   }, []);

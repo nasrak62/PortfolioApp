@@ -72,6 +72,7 @@ const NavBar = observer(() => {
               {motionLink("Transactions", "/transactions")}
               {motionLink("Weights", "/weights")}
               {motionLink("Foods", "/foods")}
+              {motionLink("Meals", "/meals")}
               {motionLink("icon", "/transactions")}
               {motionLink("Sign Out", "/", logout)}
             </>

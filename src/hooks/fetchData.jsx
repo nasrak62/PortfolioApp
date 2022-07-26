@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getJson, handleRequestResult } from "utils/request";
 
-export default function useFetchData(url, name) {
+export default function useFetchData(url, name, fn = null) {
   const [data, setData] = useState([]);
   const [error, setError] = useState({});
 
@@ -11,9 +11,15 @@ export default function useFetchData(url, name) {
 
       const result = await handleRequestResult(response, setData, setError);
 
+      if (Boolean(fn)) {
+        const transformedData = fn(result?.[name]);
+
+        return setData(transformedData);
+      }
+
       setData(result?.[name]);
     },
-    [name]
+    [name, fn]
   );
 
   useEffect(() => {

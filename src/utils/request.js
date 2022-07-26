@@ -1,6 +1,6 @@
 import axios from "axios";
 import { objectHasEmpty } from "./objects";
-import isEmpty from "lodash/isEmpty";
+import { isEmpty } from "utils/lodash";
 import store from "store/Store";
 
 export const toServer = (endPoint) => {
