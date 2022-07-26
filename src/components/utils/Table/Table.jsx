@@ -1,7 +1,7 @@
-import { classes as innerClasses, StyledTable } from "./Table.style";
-import { isEmpty } from "utils/lodash";
-import TableHead from "./TableHead";
-import TableBody from "./TableBody";
+import { classes as innerClasses, StyledTable } from './Table.style';
+import { isEmpty } from 'utils/lodash';
+import TableHead from './TableHead';
+import TableBody from './TableBody';
 
 const Table = ({
   data,

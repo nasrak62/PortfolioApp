@@ -1,5 +1,5 @@
-import { ATTR } from "../Transactions";
-import { validateFinalParams } from "utils/input";
+import { ATTR } from '../Transactions';
+import { validateFinalParams } from 'utils/input';
 
 export const createParams = (properties) => {
   let params = {};

@@ -1,5 +1,5 @@
-import isEmpty from "lodash/isEmpty";
-import { destroyAndGetUpdatedData, read } from "utils/crud";
+import isEmpty from 'lodash/isEmpty';
+import { destroyAndGetUpdatedData, read } from 'utils/crud';
 
 export const propertiesFromFood = (selectedFoods) => {
   let obj = { calories: 0, proteins: 0, carbs: 0, fats: 0, foods: [] };
@@ -21,7 +21,7 @@ export const handleSearchChange = async (
   setFoodsFromSearch,
   foodsFromSearch,
   setError,
-  setFoodSearch
+  setFoodSearch,
 ) => {
   setFoodSearch(e?.target?.value);
 
@@ -32,7 +32,7 @@ export const handleSearchChange = async (
 
   const url = Boolean(foodSearch) ? `/foods?by_name=${foodSearch}` : `/foods`;
 
-  const result = await read(url, "foods");
+  const result = await read(url, 'foods');
 
   if (result?.errors) {
     return setError(result?.errors);
@@ -42,7 +42,7 @@ export const handleSearchChange = async (
 };
 
 export const initialState = (properties, name = null) => ({
-  name: name || "",
+  name: name || '',
   calories: properties.calories,
   proteins: properties.proteins,
   carbs: properties.carbs,
@@ -53,10 +53,10 @@ export const initialState = (properties, name = null) => ({
 export const removeFoodMeal = (item, setData) => {
   destroyAndGetUpdatedData(
     `/mealfoods/${item?._id}`,
-    "mealFood",
-    "/meals",
-    "meals",
-    setData
+    'mealFood',
+    '/meals',
+    'meals',
+    setData,
   );
 };
 

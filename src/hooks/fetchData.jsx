@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { getJson, handleRequestResult } from "utils/request";
+import { useCallback, useEffect, useState } from 'react';
+import { getJson, handleRequestResult } from 'utils/request';
 
 export default function useFetchData(url, name, fn = null) {
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ export default function useFetchData(url, name, fn = null) {
 
       setData(result?.[name]);
     },
-    [name, fn]
+    [name, fn],
   );
 
   useEffect(() => {

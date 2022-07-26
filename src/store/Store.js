@@ -1,8 +1,8 @@
-import { makeObservable, observable, action } from "mobx";
-import { loadFromMemory, saveToMemory, STORAGE } from "utils/storage";
+import { makeObservable, observable, action } from 'mobx';
+import { loadFromMemory, saveToMemory, STORAGE } from 'utils/storage';
 
 class Store {
-  token = loadFromMemory(STORAGE.TOKEN) || ""; // load from storage
+  token = loadFromMemory(STORAGE.TOKEN) || ''; // load from storage
   loggedIn = loadFromMemory(STORAGE.LOGGED_IN) || false;
 
   constructor() {
@@ -23,10 +23,10 @@ class Store {
   }
 
   logout() {
-    this.token = "";
+    this.token = '';
     this.loggedIn = false;
 
-    saveToMemory(STORAGE.TOKEN, "");
+    saveToMemory(STORAGE.TOKEN, '');
     saveToMemory(STORAGE.LOGGED_IN, false);
   }
 }

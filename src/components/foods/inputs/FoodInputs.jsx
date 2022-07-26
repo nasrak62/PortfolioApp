@@ -1,9 +1,9 @@
-import Input from "components/utils/Input";
-import ShowWhen from "components/utils/ShowWhen";
-import { isEmpty, capitalize } from "utils/lodash";
-import React, { useMemo } from "react";
-import { Link } from "react-router-dom";
-import { getInputType } from "utils/input";
+import Input from 'components/utils/Input';
+import ShowWhen from 'components/utils/ShowWhen';
+import { isEmpty, capitalize } from 'utils/lodash';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { getInputType } from 'utils/input';
 
 const FoodInputs = ({
   onClick,
@@ -15,7 +15,7 @@ const FoodInputs = ({
   created,
 }) => {
   const inputs = useMemo(() => {
-    const ATTRS = ["name", "amount", "calories", "proteins", "carbs", "fats"];
+    const ATTRS = ['name', 'amount', 'calories', 'proteins', 'carbs', 'fats'];
 
     if (isEmpty(food)) {
       return null;

@@ -1,5 +1,5 @@
-import { objectHasEmpty } from "utils/objects";
-import { postJson } from "utils/request";
+import { objectHasEmpty } from 'utils/objects';
+import { postJson } from 'utils/request';
 
 export const createTransaction = async (params) => {
   const body = JSON.stringify({
@@ -10,10 +10,10 @@ export const createTransaction = async (params) => {
   });
 
   if (objectHasEmpty(body)) {
-    return { created: null, errors: "some inputs are empty" };
+    return { created: null, errors: 'some inputs are empty' };
   }
 
-  const result = await postJson(body, "/transactions");
+  const result = await postJson(body, '/transactions');
   const { created: data, errors } = result;
 
   if (!errors) {

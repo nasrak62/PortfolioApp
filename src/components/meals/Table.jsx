@@ -28,7 +28,9 @@ const Table = ({ data, setData, classes }) => {
     <div className={classes.tableContainer}>
       {data?.map((meal) => {
         return (
-          <div key={`meal-overview-${meal._id}`} className={classes.tableMealContainer}>
+          <div
+            key={`meal-overview-${meal._id}`}
+            className={classes.tableMealContainer}>
             <div>
               <p>{meal?.name}</p>
             </div>

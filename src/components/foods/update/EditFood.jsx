@@ -1,39 +1,39 @@
-import useFetchData from "hooks/fetchData";
-import React, { useCallback, useState } from "react";
-import { useParams } from "react-router-dom";
-import { update } from "utils/crud";
-import FoodInputs from "../inputs/FoodInputs";
+import useFetchData from 'hooks/fetchData';
+import React, { useCallback, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { update } from 'utils/crud';
+import FoodInputs from '../inputs/FoodInputs';
 
 const EditFood = () => {
   const { id } = useParams();
 
   const changeFoodObject = useCallback((item) => {
     return {
-      name: { validation: "text", value: item?.name },
-      amount: { validation: "numeric", value: item?.amount },
+      name: { validation: 'text', value: item?.name },
+      amount: { validation: 'numeric', value: item?.amount },
       calories: {
-        validation: "numeric",
+        validation: 'numeric',
         value: item?.calories,
       },
       proteins: {
-        validation: "numeric",
+        validation: 'numeric',
         value: item?.proteins,
       },
-      carbs: { validation: "numeric", value: item?.carbs },
-      fats: { validation: "numeric", value: item?.fats },
+      carbs: { validation: 'numeric', value: item?.carbs },
+      fats: { validation: 'numeric', value: item?.fats },
     };
   }, []);
 
   const [food, setFood, error, setError] = useFetchData(
     `/foods/${id}`,
-    "food",
-    changeFoodObject
+    'food',
+    changeFoodObject,
   );
 
   const [created, setCreated] = useState(false);
 
   const updateFood = useCallback(async () => {
-    const name = "food";
+    const name = 'food';
     const url = `/foods/${id}`;
     let paramsObj = {};
 

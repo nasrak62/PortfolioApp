@@ -1,18 +1,18 @@
-import { initialInputErrors } from "components/Transactions/utils/initial";
+import { initialInputErrors } from 'components/Transactions/utils/initial';
 
 export const cleanMessages = (
   errors,
   showCreated,
   setShowCreated,
   setErrors,
-  setInputErrors
+  setInputErrors,
 ) => {
   if (showCreated) {
     setShowCreated(false);
   }
 
-  if (errors !== "") {
-    setErrors("");
+  if (errors !== '') {
+    setErrors('');
   }
 
   setInputErrors(initialInputErrors);
@@ -22,12 +22,12 @@ export const delayedClean = (
   showCreated,
   setShowCreated,
   setErrors,
-  setInputErrors
+  setInputErrors,
 ) => {
   setShowCreated(true);
   setTimeout(() => {
     showCreated && setShowCreated(false);
-    setErrors("");
+    setErrors('');
     setInputErrors(initialInputErrors);
   }, 3000);
 };

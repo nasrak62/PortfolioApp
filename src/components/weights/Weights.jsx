@@ -1,8 +1,8 @@
-import useFetchData from "hooks/fetchData";
-import { useWindowSize } from "hooks/window";
-import capitalize from "lodash/capitalize";
-import React, { useMemo } from "react";
-import { Link } from "react-router-dom";
+import useFetchData from 'hooks/fetchData';
+import { useWindowSize } from 'hooks/window';
+import capitalize from 'lodash/capitalize';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import {
   LineChart,
   Line,
@@ -10,17 +10,17 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-} from "recharts";
+} from 'recharts';
 
-import { DAYS } from "utils/date";
-import { parseWeights } from "./utils/chart";
+import { DAYS } from 'utils/date';
+import { parseWeights } from './utils/chart';
 
-import { classes, StyledWeights } from "./Weights.style";
+import { classes, StyledWeights } from './Weights.style';
 
 const Weights = () => {
-  const url = "/weights";
+  const url = '/weights';
 
-  const [weights, setWeights, error, setErrors] = useFetchData(url, "weights");
+  const [weights, setWeights, error, setErrors] = useFetchData(url, 'weights');
   const windowSize = useWindowSize();
 
   const charts = useMemo(() => {

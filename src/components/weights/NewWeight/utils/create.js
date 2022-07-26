@@ -1,5 +1,5 @@
-import { objectHasEmpty } from "utils/objects";
-import { postJson } from "utils/request";
+import { objectHasEmpty } from 'utils/objects';
+import { postJson } from 'utils/request';
 
 export const createNewWeight = async (weight) => {
   const body = JSON.stringify({
@@ -8,10 +8,10 @@ export const createNewWeight = async (weight) => {
   });
 
   if (objectHasEmpty(body)) {
-    return { created: null, errors: "some inputs are empty" };
+    return { created: null, errors: 'some inputs are empty' };
   }
 
-  const result = await postJson(body, "/weights");
+  const result = await postJson(body, '/weights');
 
   const { created: data, errors } = result;
 

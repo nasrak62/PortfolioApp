@@ -1,11 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback } from 'react';
 
-import Input from "components/utils/Input";
-import { getInputType } from "utils/input";
+import Input from 'components/utils/Input';
+import { getInputType } from 'utils/input';
 
-import { classes, StyledChangeWeight } from "./ChangeWeight.styles";
-import ShowWhen from "components/utils/ShowWhen";
-import { Link } from "react-router-dom";
+import { classes, StyledChangeWeight } from './ChangeWeight.styles';
+import ShowWhen from 'components/utils/ShowWhen';
+import { Link } from 'react-router-dom';
 
 const ChangeWeight = ({
   weightChangeClick,
@@ -15,11 +15,11 @@ const ChangeWeight = ({
   setWeight,
 }) => {
   const [created, setCreated] = useState(false);
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState('');
 
   const handleClick = useCallback(async () => {
     setCreated(false);
-    setErrors("");
+    setErrors('');
 
     const result = await weightChangeClick(weight);
 

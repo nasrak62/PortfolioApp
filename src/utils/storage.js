@@ -1,6 +1,6 @@
 export const STORAGE = {
-  TOKEN: "token",
-  LOGGED_IN: "loggedIn",
+  TOKEN: 'token',
+  LOGGED_IN: 'loggedIn',
 };
 
 export const saveToMemory = (name, value) => {

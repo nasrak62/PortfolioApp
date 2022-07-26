@@ -1,4 +1,4 @@
-import { deleteJson, handleRequestResult } from "utils/request";
+import { deleteJson, handleRequestResult } from 'utils/request';
 
 export const deleteTransaction = async (id) => {
   return deleteJson(`/transactions/${id}`);
@@ -8,7 +8,7 @@ export const handleDeleteClick = async (
   transaction,
   setErrors,
   setTransactions,
-  getNewData
+  getNewData,
 ) => {
   const result = await deleteTransaction(transaction?._id);
 

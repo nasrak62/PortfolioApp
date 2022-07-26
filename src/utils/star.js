@@ -1,4 +1,4 @@
-import { randomRange } from "./math";
+import { randomRange } from './math';
 
 class Star {
   constructor(
@@ -10,7 +10,7 @@ class Star {
     canvas,
     velocity = 1,
     erosion = 0.2,
-    expansion = 1
+    expansion = 1,
   ) {
     this.x = x;
     this.y = y;
@@ -41,7 +41,7 @@ class Star {
     if (this.y + this.radius + this.velocity >= this.canvas.height) {
       this.radius = randomRange(
         3,
-        Math.max(this.explosionHeight / 2, this.explosionWidth / 2)
+        Math.max(this.explosionHeight / 2, this.explosionWidth / 2),
       );
 
       this.y = this.canvas.height - this.radius;

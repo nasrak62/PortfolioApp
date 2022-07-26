@@ -1,16 +1,16 @@
-import { useMemo, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { useMemo, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
-import { StyledTransactionsRow, classes } from "./TransactionsRow.styles";
-import { addNames } from "../../utils/strings";
-import { ATTR } from "./Transactions";
-import { initialProperties } from "./utils/initial";
-import { handleUpdateClick } from "./utils/updateTransaction";
-import { handleDeleteClick } from "./utils/deleteTransaction";
-import AttributesInputs from "./utils/AttributesInputs";
+import { StyledTransactionsRow, classes } from './TransactionsRow.styles';
+import { addNames } from '../../utils/strings';
+import { ATTR } from './Transactions';
+import { initialProperties } from './utils/initial';
+import { handleUpdateClick } from './utils/updateTransaction';
+import { handleDeleteClick } from './utils/deleteTransaction';
+import AttributesInputs from './utils/AttributesInputs';
 
-import { getTransactions } from "./utils/getTransactions";
+import { getTransactions } from './utils/getTransactions';
 
 const TransactionsRow = ({ transaction, setTransactions, setErrors }) => {
   const initialState = initialProperties(transaction);
@@ -57,7 +57,7 @@ const TransactionsRow = ({ transaction, setTransactions, setErrors }) => {
               setErrors,
               properties,
               setTransactions,
-              getTransactions
+              getTransactions,
             )
           }
         >
@@ -71,7 +71,7 @@ const TransactionsRow = ({ transaction, setTransactions, setErrors }) => {
               transaction,
               setErrors,
               setTransactions,
-              getTransactions
+              getTransactions,
             )
           }
         >

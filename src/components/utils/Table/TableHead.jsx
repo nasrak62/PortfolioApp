@@ -1,6 +1,6 @@
-import { capitalize } from "utils/lodash";
-import React from "react";
-import ShowWhen from "../ShowWhen";
+import { capitalize } from 'utils/lodash';
+import React from 'react';
+import ShowWhen from '../ShowWhen';
 
 const TableHead = ({ classes, attrs, showUpdate, showDelete }) => {
   return (

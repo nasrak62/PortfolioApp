@@ -1,4 +1,4 @@
-import { getJson } from "utils/request";
+import { getJson } from 'utils/request';
 
 export const getWeight = async (date) => {
   console.log(date);

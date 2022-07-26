@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from "react";
-import { createCanvas } from "utils/canvas";
+import React, { useRef, useEffect } from 'react';
+import { createCanvas } from 'utils/canvas';
 
-import { StyledHomePage, classes } from "./HomePage.styles";
+import { StyledHomePage, classes } from './HomePage.styles';
 
 const HomePage = () => {
   const canvasRef = useRef(null);

@@ -1,4 +1,4 @@
-import { capitalize } from "./strings";
+import { capitalize } from './strings';
 
 export const objectHasEmpty = (object) => {
   return Object.keys(object).some((key) => !Boolean(object[key]));

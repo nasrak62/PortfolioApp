@@ -1,9 +1,9 @@
 export const getInputType = (attr) => {
   switch (attr) {
-    case "date":
-      return "date";
+    case 'date':
+      return 'date';
     default:
-      return "text";
+      return 'text';
   }
 };
 
@@ -43,11 +43,11 @@ const parseNumeric = (value) => {
 };
 
 export const validate = (type, newValue, oldValue) => {
-  const emptyString = newValue === "";
+  const emptyString = newValue === '';
   const valueExist = Boolean(newValue) || emptyString;
   let useNewValue = valueExist;
 
-  if (type === "numeric" && !emptyString) {
+  if (type === 'numeric' && !emptyString) {
     useNewValue = Boolean(valueExist && validateNumberInput(newValue));
     return useNewValue ? parseNumeric(newValue) : oldValue;
   }
@@ -60,23 +60,23 @@ const validateInput = (type, value) => {
     return false;
   }
 
-  if (type === "numeric") {
+  if (type === 'numeric') {
     return Boolean(validateNumberInput(value));
   }
 
-  if (type === "text") {
+  if (type === 'text') {
     return Boolean(validateTextInput(value));
   }
 
-  if (type === "date") {
+  if (type === 'date') {
     return Boolean(validateDateInput(value));
   }
 
-  if (type === "email") {
+  if (type === 'email') {
     return Boolean(validateEmailInput(value));
   }
 
-  if (type === "password") {
+  if (type === 'password') {
     return Boolean(validatePasswordInput(value));
   }
 
@@ -99,13 +99,13 @@ export const validateFinalParams = (params, setErrors) => {
 
 export const handleInputChange = (e, attr, properties, setProperties) => {
   const newValue = e?.target?.value;
-  const emptyString = newValue === "";
+  const emptyString = newValue === '';
   const valueExist = Boolean(newValue) || emptyString;
 
   const value = validate(
     properties[attr]?.validation,
     newValue,
-    properties[attr]?.value
+    properties[attr]?.value,
   );
 
   if (valueExist && value !== properties[attr]?.value) {

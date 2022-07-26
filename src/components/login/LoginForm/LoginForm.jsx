@@ -1,8 +1,8 @@
-import { useCallback, useMemo } from "react";
-import Input from "components/utils/Input";
-import ShowWhen from "components/utils/ShowWhen";
-import { capitalize } from "utils/strings";
-import { StyledLoginForm, classes as basicClass } from "./LoginForm.style";
+import { useCallback, useMemo } from 'react';
+import Input from 'components/utils/Input';
+import ShowWhen from 'components/utils/ShowWhen';
+import { capitalize } from 'utils/strings';
+import { StyledLoginForm, classes as basicClass } from './LoginForm.style';
 
 const LoginForm = ({
   user,
@@ -23,7 +23,7 @@ const LoginForm = ({
         return { ...prevState, [attr]: newValue };
       });
     },
-    [setUser]
+    [setUser],
   );
 
   const inputs = useMemo(() => {

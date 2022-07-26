@@ -1,11 +1,11 @@
-import ByCondition from "components/utils/ByCondition";
-import Select from "components/utils/Select";
-import Input from "components/utils/Input";
-import { addNames, capitalize } from "utils/strings";
-import { getInputType } from "utils/input";
-import { useCallback } from "react";
-import { handleInputChange } from "utils/input";
-import { TRANSACTIONS_TYPE } from "../Transactions";
+import ByCondition from 'components/utils/ByCondition';
+import Select from 'components/utils/Select';
+import Input from 'components/utils/Input';
+import { addNames, capitalize } from 'utils/strings';
+import { getInputType } from 'utils/input';
+import { useCallback } from 'react';
+import { handleInputChange } from 'utils/input';
+import { TRANSACTIONS_TYPE } from '../Transactions';
 
 const AttributesInputs = ({
   properties,
@@ -18,14 +18,14 @@ const AttributesInputs = ({
     (e, attr, options = null) => {
       return handleInputChange(e, attr, properties, setProperties);
     },
-    [properties, setProperties]
+    [properties, setProperties],
   );
 
   return (
     <>
       {
         <ByCondition
-          condition={attr === "type"}
+          condition={attr === 'type'}
           ifTrue={
             <Select
               classes={classes}
@@ -39,7 +39,7 @@ const AttributesInputs = ({
             <Input
               classes={addNames(
                 classes[`item${capitalize(attr)}`],
-                classes.item
+                classes.item,
               )}
               keyProp={`${attr}-input-key`}
               key={`${attr}-Input-key`}
@@ -48,8 +48,8 @@ const AttributesInputs = ({
               value={value}
               onChange={handleChange}
               pattern={
-                attr === "price"
-                  ? "^(([0-9]+(.))|([0-9]+(.)[0-9]+)|[0-9]+)$"
+                attr === 'price'
+                  ? '^(([0-9]+(.))|([0-9]+(.)[0-9]+)|[0-9]+)$'
                   : null
               }
             />

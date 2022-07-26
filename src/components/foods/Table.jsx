@@ -1,14 +1,14 @@
-import React, { useCallback, useMemo } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import React, { useCallback, useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
-import { classes, StyledTable } from "./Table.style";
-import { Link } from "react-router-dom";
-import { destroyAndGetUpdatedData } from "utils/crud";
-import { isEmpty } from "utils/lodash";
-import Input from "components/utils/Input";
-import { getInputType } from "utils/input";
-import { recalculateValues } from "./utils";
+import { classes, StyledTable } from './Table.style';
+import { Link } from 'react-router-dom';
+import { destroyAndGetUpdatedData } from 'utils/crud';
+import { isEmpty } from 'utils/lodash';
+import Input from 'components/utils/Input';
+import { getInputType } from 'utils/input';
+import { recalculateValues } from './utils';
 
 const Table = ({ data, setData, inputs = null }) => {
   const handleChange = useCallback(
@@ -19,7 +19,7 @@ const Table = ({ data, setData, inputs = null }) => {
       newValue = parseFloat(newValue);
       newData[index][attr] = newValue;
 
-      if (attr === "amount") {
+      if (attr === 'amount') {
         newData[index] = recalculateValues(data[index], newValue, oldValue);
       }
 
@@ -27,7 +27,7 @@ const Table = ({ data, setData, inputs = null }) => {
         return newData;
       });
     },
-    [data, setData]
+    [data, setData],
   );
 
   const textOrInput = useCallback(
@@ -48,7 +48,7 @@ const Table = ({ data, setData, inputs = null }) => {
 
       return item[attr];
     },
-    [inputs, handleChange]
+    [inputs, handleChange],
   );
 
   const showData = useMemo(() => {
@@ -56,20 +56,20 @@ const Table = ({ data, setData, inputs = null }) => {
     return data?.map((item, index) => {
       return (
         <tr key={`food-item-${item?._id}`} className={classes.row}>
-          <td className={classes.column}>{textOrInput("name", item, index)}</td>
+          <td className={classes.column}>{textOrInput('name', item, index)}</td>
           <td className={classes.column}>
-            {textOrInput("amount", item, index)}
+            {textOrInput('amount', item, index)}
           </td>
           <td className={classes.column}>
-            {textOrInput("calories", item, index)}
+            {textOrInput('calories', item, index)}
           </td>
           <td className={classes.column}>
-            {textOrInput("proteins", item, index)}
+            {textOrInput('proteins', item, index)}
           </td>
           <td className={classes.column}>
-            {textOrInput("carbs", item, index)}
+            {textOrInput('carbs', item, index)}
           </td>
-          <td className={classes.column}>{textOrInput("fats", item, index)}</td>
+          <td className={classes.column}>{textOrInput('fats', item, index)}</td>
           <td className={classes.column}>
             <Link to={`/foods/edit/${item?._id}`}>
               <button className={classes.column}>
@@ -83,10 +83,10 @@ const Table = ({ data, setData, inputs = null }) => {
               onClick={() =>
                 destroyAndGetUpdatedData(
                   `/foods/${item?._id}`,
-                  "food",
-                  "/foods",
-                  "foods",
-                  setData
+                  'food',
+                  '/foods',
+                  'foods',
+                  setData,
                 )
               }
             >

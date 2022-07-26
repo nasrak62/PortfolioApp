@@ -1,6 +1,6 @@
-import noop from "lodash/noop";
-import { useCallback } from "react";
-import { handleInputChange } from "utils/input";
+import noop from 'lodash/noop';
+import { useCallback } from 'react';
+import { handleInputChange } from 'utils/input';
 
 const Input = ({
   classes,
@@ -17,7 +17,7 @@ const Input = ({
     (e, attr, options = null) => {
       return handleInputChange(e, attr, data, setData);
     },
-    [data, setData]
+    [data, setData],
   );
 
   const handleChange = onChange || makeChange;

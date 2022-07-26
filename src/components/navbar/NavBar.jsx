@@ -1,11 +1,11 @@
-import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useCallback, useMemo } from "react";
+import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useCallback, useMemo } from 'react';
 
-import ByCondition from "components/utils/ByCondition";
-import useStore from "hooks/useStore";
-import { StyledNavBar, classes } from "./NavBar.styles";
+import ByCondition from 'components/utils/ByCondition';
+import useStore from 'hooks/useStore';
+import { StyledNavBar, classes } from './NavBar.styles';
 
 const NavBar = observer(() => {
   const store = useStore();
@@ -20,10 +20,10 @@ const NavBar = observer(() => {
       hover: {
         scale: [1, 1.5, 1.7, 2, 1.7, 1.5, 1],
         rotate: [0, 270, 540, 810, 1080, 1350, 1440],
-        borderRadius: ["25%", "50%", "75%", "100%", "75%", "50%", "25%"],
+        borderRadius: ['25%', '50%', '75%', '100%', '75%', '50%', '25%'],
       },
     }),
-    []
+    [],
   );
 
   const motionLink = useCallback(
@@ -56,31 +56,31 @@ const NavBar = observer(() => {
         />
       );
     },
-    [variants]
+    [variants],
   );
 
   return (
     <StyledNavBar className={classes.navContainer}>
       <p className={classes.link}>Logo</p>
       <div className={classes.container}>
-        {motionLink("Home", "/")}
+        {motionLink('Home', '/')}
 
         <ByCondition
           condition={loggedIn}
           ifTrue={
             <>
-              {motionLink("Transactions", "/transactions")}
-              {motionLink("Weights", "/weights")}
-              {motionLink("Foods", "/foods")}
-              {motionLink("Meals", "/meals")}
-              {motionLink("icon", "/transactions")}
-              {motionLink("Sign Out", "/", logout)}
+              {motionLink('Transactions', '/transactions')}
+              {motionLink('Weights', '/weights')}
+              {motionLink('Foods', '/foods')}
+              {motionLink('Meals', '/meals')}
+              {motionLink('icon', '/transactions')}
+              {motionLink('Sign Out', '/', logout)}
             </>
           }
           ifFalse={
             <>
-              {motionLink("Register", "/register")}
-              {motionLink("Login", "/login")}
+              {motionLink('Register', '/register')}
+              {motionLink('Login', '/login')}
             </>
           }
         />

@@ -1,17 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import useFetchData from "hooks/fetchData";
+import useFetchData from 'hooks/fetchData';
 
-// import Table from "./Table";
+import Table from 'components/utils/Table/Table';
+import Options from './Options';
+import { handleEditLink, handleFoodRowChange, onDeleteFood } from './utils';
+import ShowWhen from 'components/utils/ShowWhen';
 
-import Table from "components/utils/Table/Table";
-import Options from "./Options";
-import { handleEditLink, handleFoodRowChange, onDeleteFood } from "./utils";
-
-const attrs = ["name", "amount", "proteins", "carbs", "fats"];
+const attrs = ['name', 'amount', 'proteins', 'carbs', 'fats'];
 
 const Foods = () => {
-  const [foods, setFoods, error, setError] = useFetchData("/foods", "foods");
+  const [foods, setFoods, error] = useFetchData('/foods', 'foods');
 
   return (
     <div>
@@ -28,6 +27,12 @@ const Foods = () => {
         onChange={handleFoodRowChange}
         editLink={handleEditLink}
       />
+
+      <ShowWhen condition={Boolean(error)}>
+        <div>
+          <p>{error}</p>
+        </div>
+      </ShowWhen>
     </div>
   );
 };

@@ -3,7 +3,7 @@ export const capitalize = (string) => {
 };
 
 export const addNames = (...names) => {
-  let className = "";
+  let className = '';
 
   names.forEach((name) => {
     className = `${className} ${name}`;

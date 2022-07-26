@@ -1,6 +1,6 @@
-import { capitalize } from "../../utils/strings";
-import { ATTR } from "./Transactions";
-import { StyledTransactionsHeader, classes } from "./TransactionsHeader.style";
+import { capitalize } from '../../utils/strings';
+import { ATTR } from './Transactions';
+import { StyledTransactionsHeader, classes } from './TransactionsHeader.style';
 
 const TransactionsHeader = ({ type }) => {
   return (

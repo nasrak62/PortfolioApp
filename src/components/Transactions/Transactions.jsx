@@ -1,33 +1,33 @@
-import { useCallback, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import isEqual from "lodash/isEqual";
+import { useCallback, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import isEqual from 'lodash/isEqual';
 
-import useFetchData from "../../hooks/fetchData";
-import ShowWhen from "components/utils/ShowWhen";
-import TransactionsRow from "./TransactionsRow";
-import TransactionsHeader from "./TransactionsHeader";
-import { addNames } from "../../utils/strings";
-import { StyledTransactions, classes } from "./Transactions.styles";
-import Select from "components/utils/Select";
-import { MONTHS, todayMonth, todayYear, YEARS } from "utils/date";
-import { urlFilters } from "utils/request";
+import useFetchData from '../../hooks/fetchData';
+import ShowWhen from 'components/utils/ShowWhen';
+import TransactionsRow from './TransactionsRow';
+import TransactionsHeader from './TransactionsHeader';
+import { addNames } from '../../utils/strings';
+import { StyledTransactions, classes } from './Transactions.styles';
+import Select from 'components/utils/Select';
+import { MONTHS, todayMonth, todayYear, YEARS } from 'utils/date';
+import { urlFilters } from 'utils/request';
 
-export const ATTR = ["date", "description", "price", "type"];
-export const TRANSACTIONS_TYPE = ["Expense", "Income"];
+export const ATTR = ['date', 'description', 'price', 'type'];
+export const TRANSACTIONS_TYPE = ['Expense', 'Income'];
 
 const Transactions = () => {
   const [month, setMonth] = useState(todayMonth());
   const [year, setYear] = useState(todayYear());
 
   const url = urlFilters(
-    "/transactions",
-    `by_date=${year}-${month.value}-[0-9]{2}`
+    '/transactions',
+    `by_date=${year}-${month.value}-[0-9]{2}`,
   );
 
   const [transactions, setTransactions, error, setErrors] = useFetchData(
     url,
-    "transactions"
+    'transactions',
   );
 
   const [displayType, setDisplayType] = useState(TRANSACTIONS_TYPE[0]);
@@ -39,7 +39,7 @@ const Transactions = () => {
       return [];
     }
 
-    return transactions.filter((item) => item?.type === "Expense");
+    return transactions.filter((item) => item?.type === 'Expense');
   }, [showError, transactions]);
 
   const incomes = useMemo(() => {
@@ -47,7 +47,7 @@ const Transactions = () => {
       return [];
     }
 
-    return transactions.filter((item) => item?.type === "Income");
+    return transactions.filter((item) => item?.type === 'Income');
   }, [showError, transactions]);
 
   const displayList = displayType === TRANSACTIONS_TYPE[0] ? expenses : incomes;
@@ -66,7 +66,7 @@ const Transactions = () => {
     hover: {
       scale: [1, 2, 2, 2, 2, 2, 1],
       rotate: [0, 270, 360, 360, 360, 360, 0],
-      borderRadius: ["0%", "50%", "50%", "50%", "50%", "50%", "0%"],
+      borderRadius: ['0%', '50%', '50%', '50%', '50%', '50%', '0%'],
     },
   };
 
@@ -87,7 +87,7 @@ const Transactions = () => {
         return setYear(e?.target?.value || year);
       }
     },
-    [month, displayType, year]
+    [month, displayType, year],
   );
 
   return (
@@ -100,8 +100,7 @@ const Transactions = () => {
           <motion.button
             variants={variants}
             whileHover="hover"
-            className={classes.button}
-          >
+            className={classes.button}>
             <p>Create New Transaction</p>
           </motion.button>
         </Link>

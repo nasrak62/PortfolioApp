@@ -1,4 +1,4 @@
-import { destroyAndGetUpdatedData } from "utils/crud";
+import { destroyAndGetUpdatedData } from 'utils/crud';
 
 export const foodsFromMeal = (meal) => {
   let foods = [];
@@ -13,10 +13,10 @@ export const foodsFromMeal = (meal) => {
 export const onDeleteMeal = (item, setData) => {
   destroyAndGetUpdatedData(
     `/meals/${item?._id}`,
-    "meal",
-    "/meals",
-    "meals",
-    setData
+    'meal',
+    '/meals',
+    'meals',
+    setData,
   );
 };
 

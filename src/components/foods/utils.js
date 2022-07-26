@@ -1,12 +1,12 @@
-import { destroyAndGetUpdatedData } from "utils/crud";
+import { destroyAndGetUpdatedData } from 'utils/crud';
 
 export const initialFood = (food = null) => ({
-  name: { validation: "text", value: food?.name || "" },
-  amount: { validation: "numeric", value: food?.amount || 0 },
-  calories: { validation: "numeric", value: food?.calories || 0 },
-  proteins: { validation: "numeric", value: food?.proteins || 0 },
-  carbs: { validation: "numeric", value: food?.carbs || 0 },
-  fats: { validation: "numeric", value: food?.fats || 0 },
+  name: { validation: 'text', value: food?.name || '' },
+  amount: { validation: 'numeric', value: food?.amount || 0 },
+  calories: { validation: 'numeric', value: food?.calories || 0 },
+  proteins: { validation: 'numeric', value: food?.proteins || 0 },
+  carbs: { validation: 'numeric', value: food?.carbs || 0 },
+  fats: { validation: 'numeric', value: food?.fats || 0 },
 });
 
 export const recalculateValues = (values, newAmount, oldAmount) => {
@@ -29,7 +29,7 @@ export const handleFoodRowChange = (e, index, attr, data, setData) => {
   newValue = parseFloat(newValue);
   newData[index][attr] = newValue;
 
-  if (attr === "amount") {
+  if (attr === 'amount') {
     newData[index] = recalculateValues(data[index], newValue, oldValue);
   }
 
@@ -41,10 +41,10 @@ export const handleFoodRowChange = (e, index, attr, data, setData) => {
 export const onDeleteFood = (item, setData) => {
   destroyAndGetUpdatedData(
     `/foods/${item?._id}`,
-    "food",
-    "/foods",
-    "foods",
-    setData
+    'food',
+    '/foods',
+    'foods',
+    setData,
   );
 };
 

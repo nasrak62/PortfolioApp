@@ -1,7 +1,7 @@
-import axios from "axios";
-import { objectHasEmpty } from "./objects";
-import { isEmpty } from "utils/lodash";
-import store from "store/Store";
+import axios from 'axios';
+import { objectHasEmpty } from './objects';
+import { isEmpty } from 'utils/lodash';
+import store from 'store/Store';
 
 export const toServer = (endPoint) => {
   let url = process.env.REACT_APP_SERVER_URL;
@@ -11,12 +11,12 @@ export const toServer = (endPoint) => {
 const jsonHeaders = () => {
   let headers = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
   if (Boolean(store?.token && store?.loggedIn)) {
-    headers.headers["Authorization"] = `Bearer ${store?.token}`;
+    headers.headers['Authorization'] = `Bearer ${store?.token}`;
   }
 
   return headers;
@@ -27,14 +27,14 @@ const handleSuccess = (result) => {
     return { created: result?.data, errors: null };
   }
 
-  return { created: null, errors: "unknown error" };
+  return { created: null, errors: 'unknown error' };
 };
 
 const handleError = (e) => {
-  const error = e?.response?.data?.msg || "unknown error";
+  const error = e?.response?.data?.msg || 'unknown error';
 
   if (isEmpty(error)) {
-    return { created: null, errors: "Unknown error" };
+    return { created: null, errors: 'Unknown error' };
   }
 
   return { created: null, errors: error };
@@ -96,7 +96,7 @@ export const handleRequestResult = async (
   result,
   setData,
   setErrors,
-  getNewData = null
+  getNewData = null,
 ) => {
   if (result?.errors || objectHasEmpty(result?.created)) {
     return setErrors({

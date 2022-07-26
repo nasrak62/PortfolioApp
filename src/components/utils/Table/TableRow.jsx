@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
-import { faTrash, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import React, { useCallback } from 'react';
+import { faTrash, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
-import { Link } from "react-router-dom";
-import Input from "components/utils/Input";
-import { getInputType } from "utils/input";
-import IconButton from "./IconButton";
-import ShowWhen from "../ShowWhen";
+import { Link } from 'react-router-dom';
+import Input from 'components/utils/Input';
+import { getInputType } from 'utils/input';
+import IconButton from './IconButton';
+import ShowWhen from '../ShowWhen';
 
 const TableRow = ({
   item,
@@ -26,14 +26,14 @@ const TableRow = ({
     (item) => {
       onDelete(item, setData);
     },
-    [setData, onDelete]
+    [setData, onDelete],
   );
 
   const handleChange = useCallback(
     (e, index, attr) => {
       onChange(e, index, attr, data, setData);
     },
-    [onChange, data, setData]
+    [onChange, data, setData],
   );
 
   const textOrInput = useCallback(
@@ -54,7 +54,7 @@ const TableRow = ({
 
       return item[attr];
     },
-    [inputs, handleChange, classes]
+    [inputs, handleChange, classes],
   );
 
   return (

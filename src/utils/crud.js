@@ -1,6 +1,6 @@
-import { isEmpty } from "lodash";
-import { objectHasEmpty } from "utils/objects";
-import { deleteJson, getJson, patchJson, postJson } from "utils/request";
+import { isEmpty } from 'lodash';
+import { objectHasEmpty } from 'utils/objects';
+import { deleteJson, getJson, patchJson, postJson } from 'utils/request';
 
 export const parseBody = (paramsObj) => {
   let body = {};
@@ -15,7 +15,7 @@ const handleBody = (paramsObj) => {
   const body = parseBody(paramsObj);
 
   if (objectHasEmpty(body)) {
-    return { created: null, errors: "some inputs are empty" };
+    return { created: null, errors: 'some inputs are empty' };
   }
 
   return body;
@@ -24,19 +24,19 @@ const handleBody = (paramsObj) => {
 const handleMethod = async (url, method, paramsObj) => {
   let body;
 
-  if (method === "patch") {
+  if (method === 'patch') {
     body = handleBody(paramsObj);
     return await patchJson(body, url);
   }
-  if (method === "get") {
+  if (method === 'get') {
     return await getJson(url);
   }
 
-  if (method === "post") {
+  if (method === 'post') {
     body = handleBody(paramsObj);
     return await postJson(body, url);
   }
-  if (method === "delete") {
+  if (method === 'delete') {
     return await deleteJson(url);
   }
 };
@@ -54,24 +54,24 @@ export const crud = async (method, url, name, paramsObj = null) => {
     return result;
   } catch (error) {
     console.log(error);
-    return { created: null, errors: "error" };
+    return { created: null, errors: 'error' };
   }
 };
 
 export const create = async (paramsObj, url, name) => {
-  return await crud("post", url, name, paramsObj);
+  return await crud('post', url, name, paramsObj);
 };
 
 export const update = async (paramsObj, url, name) => {
-  return await crud("patch", url, name, paramsObj);
+  return await crud('patch', url, name, paramsObj);
 };
 
 export const read = async (url, name) => {
-  return await crud("get", url, name);
+  return await crud('get', url, name);
 };
 
 export const destroy = async (url, name) => {
-  return await crud("delete", url, name);
+  return await crud('delete', url, name);
 };
 
 export const destroyAndGetUpdatedData = async (
@@ -79,7 +79,7 @@ export const destroyAndGetUpdatedData = async (
   deleteName,
   getUrl,
   getName,
-  setData
+  setData,
 ) => {
   const result = await destroy(deleteUrl, deleteName);
 

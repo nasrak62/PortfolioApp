@@ -1,20 +1,20 @@
-import { useCallback, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useCallback, useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 
-import { ATTR } from "../Transactions";
-import { createParams, checkParams } from "../utils/requestParams";
-import AttributesInputs from "../utils/AttributesInputs";
-import { createTransaction } from "./utils/createTransaction";
-import ShowWhen from "components/utils/ShowWhen";
-import { initialProperties, initialInputErrors } from "../utils/initial";
-import { objectHasValue } from "utils/objects";
-import { capitalize } from "utils/strings";
-import { StyledNewTransactions, classes } from "./NewTransaction.styles";
-import { cleanMessages, delayedClean } from "./utils/cleanMessages";
+import { ATTR } from '../Transactions';
+import { createParams, checkParams } from '../utils/requestParams';
+import AttributesInputs from '../utils/AttributesInputs';
+import { createTransaction } from './utils/createTransaction';
+import ShowWhen from 'components/utils/ShowWhen';
+import { initialProperties, initialInputErrors } from '../utils/initial';
+import { objectHasValue } from 'utils/objects';
+import { capitalize } from 'utils/strings';
+import { StyledNewTransactions, classes } from './NewTransaction.styles';
+import { cleanMessages, delayedClean } from './utils/cleanMessages';
 
 const NewTransaction = () => {
   const [properties, setProperties] = useState(initialProperties(null));
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState('');
   const [inputErrors, setInputErrors] = useState(initialInputErrors);
   const [showCreated, setShowCreated] = useState(false);
 
@@ -24,7 +24,7 @@ const NewTransaction = () => {
       showCreated,
       setShowCreated,
       setErrors,
-      setInputErrors
+      setInputErrors,
     );
 
     if (!checkParams(properties, setInputErrors)) {
@@ -59,7 +59,7 @@ const NewTransaction = () => {
     tap: {
       scale: [0, 0.5, 1, 2, 1],
       rotate: [0, 180, 360, 180, 0],
-      borderRadius: ["25%", "50%", "100%", "50%", "25%"],
+      borderRadius: ['25%', '50%', '100%', '50%', '25%'],
     },
   };
 

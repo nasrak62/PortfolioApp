@@ -29,18 +29,18 @@ export const todayYear = () => {
 };
 
 export const MONTHS = {
-  January: "01",
-  February: "02",
-  March: "03",
-  April: "04",
-  May: "05",
-  June: "06",
-  July: "07",
-  August: "08",
-  September: "09",
-  October: "10",
-  November: "11",
-  December: "12",
+  January: '01',
+  February: '02',
+  March: '03',
+  April: '04',
+  May: '05',
+  June: '06',
+  July: '07',
+  August: '08',
+  September: '09',
+  October: '10',
+  November: '11',
+  December: '12',
 };
 
 export const DAYS = {
@@ -49,4 +49,4 @@ export const DAYS = {
   MONTH: 30,
   YEAR: 365,
 };
-export const YEARS = ["2022"];
+export const YEARS = ['2022'];

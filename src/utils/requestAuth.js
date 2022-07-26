@@ -1,5 +1,5 @@
-import { objectHasEmpty } from "utils/objects";
-import { postJson } from "./request";
+import { objectHasEmpty } from 'utils/objects';
+import { postJson } from './request';
 
 const handleResult = async (result, setErrors) => {
   if (result?.errors || objectHasEmpty(result?.created)) {
@@ -12,7 +12,7 @@ const handleResult = async (result, setErrors) => {
     return token;
   }
 
-  return setErrors("cant get token");
+  return setErrors('cant get token');
 };
 
 export const createAuthRequest = async (user, url, setErrors) => {

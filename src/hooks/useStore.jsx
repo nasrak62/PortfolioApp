@@ -1,5 +1,5 @@
-import { StoreContext } from "App";
-import { useContext } from "react";
+import { StoreContext } from 'App';
+import { useContext } from 'react';
 
 const useStore = () => {
   const store = useContext(StoreContext);

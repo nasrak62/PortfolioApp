@@ -1,5 +1,5 @@
-import { objectHasEmpty } from "utils/objects";
-import { patchJson } from "utils/request";
+import { objectHasEmpty } from 'utils/objects';
+import { patchJson } from 'utils/request';
 
 export const update = async (weight, id) => {
   const body = JSON.stringify({
@@ -8,7 +8,7 @@ export const update = async (weight, id) => {
   });
 
   if (objectHasEmpty(body)) {
-    return { created: null, errors: "some inputs are empty" };
+    return { created: null, errors: 'some inputs are empty' };
   }
 
   const result = await patchJson(body, `/weights/${id}`);

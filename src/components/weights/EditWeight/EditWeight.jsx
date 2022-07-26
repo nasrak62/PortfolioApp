@@ -1,19 +1,19 @@
-import ShowWhen from "components/utils/ShowWhen";
-import React, { useEffect, useState, useCallback } from "react";
+import ShowWhen from 'components/utils/ShowWhen';
+import React, { useEffect, useState, useCallback } from 'react';
 
-import ChangeWeight from "../ChangeWeight/ChangeWeight";
-import { formatDate } from "utils/date";
-import { update } from "./utils/update";
-import { getWeight } from "./utils/get";
+import ChangeWeight from '../ChangeWeight/ChangeWeight';
+import { formatDate } from 'utils/date';
+import { update } from './utils/update';
+import { getWeight } from './utils/get';
 
 const EditWeight = () => {
   const [error, setError] = useState(false);
   const [weight, setWeight] = useState({
     date: {
       value: formatDate(null),
-      validation: "date",
+      validation: 'date',
     },
-    pounds: { value: 0, validation: "numeric" },
+    pounds: { value: 0, validation: 'numeric' },
   });
 
   const [DBWeight, setDBWeight] = useState(null);
@@ -22,7 +22,7 @@ const EditWeight = () => {
     async (weight) => {
       return await update(weight, DBWeight?._id);
     },
-    [DBWeight]
+    [DBWeight],
   );
 
   const weightInfo = useCallback(async () => {
@@ -44,9 +44,9 @@ const EditWeight = () => {
     return setWeight({
       date: {
         value: current_weight?.date,
-        validation: "date",
+        validation: 'date',
       },
-      pounds: { value: current_weight?.pounds, validation: "numeric" },
+      pounds: { value: current_weight?.pounds, validation: 'numeric' },
     });
   }, [weight.date.value]);
 
