@@ -11,7 +11,7 @@ export default function useFetchData(url, name, fn = null) {
 
       const result = await handleRequestResult(response, setData, setError);
 
-      if (Boolean(fn)) {
+      if (fn) {
         const transformedData = fn(result?.[name]);
 
         return setData(transformedData);
