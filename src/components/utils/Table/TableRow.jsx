@@ -10,7 +10,6 @@ import ShowWhen from '../ShowWhen';
 const TableRow = ({
   item,
   classes,
-  onClick,
   attrs,
   index,
   inputs,
@@ -38,7 +37,7 @@ const TableRow = ({
 
   const textOrInput = useCallback(
     (attr, item, index) => {
-      if (Boolean(inputs?.[attr])) {
+      if (inputs?.[attr]) {
         console.log(item[attr]);
         return (
           <Input

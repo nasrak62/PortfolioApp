@@ -23,7 +23,7 @@ const Table = ({ data, setData, inputs = null }) => {
         newData[index] = recalculateValues(data[index], newValue, oldValue);
       }
 
-      setData((prev) => {
+      setData(() => {
         return newData;
       });
     },
@@ -32,8 +32,7 @@ const Table = ({ data, setData, inputs = null }) => {
 
   const textOrInput = useCallback(
     (attr, item, index) => {
-      if (Boolean(inputs?.[attr])) {
-        console.log(item[attr]);
+      if (inputs?.[attr]) {
         return (
           <Input
             classes={classes}
@@ -88,8 +87,7 @@ const Table = ({ data, setData, inputs = null }) => {
                   'foods',
                   setData,
                 )
-              }
-            >
+              }>
               <FontAwesomeIcon icon={faTrash} />
             </button>
           </td>

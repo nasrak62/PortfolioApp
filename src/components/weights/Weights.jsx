@@ -20,7 +20,7 @@ import { classes, StyledWeights } from './Weights.style';
 const Weights = () => {
   const url = '/weights';
 
-  const [weights, setWeights, error, setErrors] = useFetchData(url, 'weights');
+  const [weights] = useFetchData(url, 'weights');
   const windowSize = useWindowSize();
 
   const charts = useMemo(() => {
@@ -38,8 +38,7 @@ const Weights = () => {
           return (
             <div
               key={`charts-by-date-${type}`}
-              className={classes.chartContainer}
-            >
+              className={classes.chartContainer}>
               <div className={classes.chartTitleContainer}>
                 <h1 className={classes.chartHeaderContainer}>
                   This {capitalize(type)} Weights
@@ -51,8 +50,7 @@ const Weights = () => {
                   className={classes.chartInner}
                   width={windowSize?.width * 0.8}
                   height={windowSize?.height * 0.3}
-                  data={dataSets[type]}
-                >
+                  data={dataSets[type]}>
                   <Line type="monotone" dataKey="value" stroke="#8884d8" />
                   <CartesianGrid stroke="#ffffff" />
                   <XAxis
@@ -74,8 +72,7 @@ const Weights = () => {
   return (
     <StyledWeights
       className={classes.container}
-      height={windowSize?.height * 0.8 || 1000}
-    >
+      height={windowSize?.height * 0.8 || 1000}>
       <div className={classes.subContainer}>
         <div className={classes.headerContainer}>
           <h1 className={classes.header}>Weights</h1>

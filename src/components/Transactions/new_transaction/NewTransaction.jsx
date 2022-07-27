@@ -70,13 +70,11 @@ const NewTransaction = () => {
         return (
           <div
             key={`${attr}-input-container-key`}
-            className={classes.inputContainer}
-          >
+            className={classes.inputContainer}>
             <div key={`${attr}-input-label-container-key`}>
               <p
                 className={classes.inputLabel}
-                key={`${attr}-p-label-container-key`}
-              >
+                key={`${attr}-p-label-container-key`}>
                 {`${capitalize(attr)}:`}
               </p>
             </div>
@@ -97,8 +95,7 @@ const NewTransaction = () => {
           variants={variants}
           whileHover="hover"
           whileTap="tap"
-          className={classes.button}
-        >
+          className={classes.button}>
           Create
         </motion.button>
       </div>
@@ -113,8 +110,7 @@ const NewTransaction = () => {
 
       <ShowWhen
         className={classes.errors}
-        condition={objectHasValue(inputErrors)}
-      >
+        condition={objectHasValue(inputErrors)}>
         {showInputErrors}
       </ShowWhen>
     </StyledNewTransactions>

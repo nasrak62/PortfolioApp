@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import axios from 'axios';
 import { objectHasEmpty } from './objects';
 import { isEmpty } from 'utils/lodash';
@@ -15,7 +16,7 @@ const jsonHeaders = () => {
     },
   };
 
-  if (Boolean(store?.token && store?.loggedIn)) {
+  if (store?.token && store?.loggedIn) {
     headers.headers['Authorization'] = `Bearer ${store?.token}`;
   }
 
@@ -82,7 +83,7 @@ export const getJson = async (url) => {
 export const getUpdatedData = async (setData, getNewData, setErrors) => {
   const { created: transactions, errors } = await getNewData();
 
-  if (errors || !Boolean(transactions)) {
+  if (errors || !transactions) {
     return setErrors({
       toUser: "can't get data",
       fullError: errors,

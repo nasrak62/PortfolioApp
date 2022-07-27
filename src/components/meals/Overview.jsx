@@ -43,8 +43,7 @@ const Overview = ({ meal, classes }) => {
                 right: 10,
                 left: 5,
                 bottom: 5,
-              }}
-            >
+              }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis dataKey="value" />
@@ -66,8 +65,7 @@ const Overview = ({ meal, classes }) => {
                 right: 10,
                 left: 5,
                 bottom: 5,
-              }}
-            >
+              }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis dataKey="value" />

@@ -63,6 +63,11 @@ const NewMeal = () => {
   }, [meal]);
 
   const removeFromSearch = useCallback((item, setData) => {
+    // needs setData here for now, remove later
+    if (setData) {
+      removeFoodFromSearch(item, setSelectedFoods);
+    }
+
     removeFoodFromSearch(item, setSelectedFoods);
   }, []);
 
@@ -77,7 +82,7 @@ const NewMeal = () => {
       </div>
 
       <div className={classes.nameContainer}>
-        <div className={classes.nameLabel}>Meal's Name: </div>
+        <div className={classes.nameLabel}>Meal Name: </div>
         <Input
           classes={classes.nameInput}
           attr="text"

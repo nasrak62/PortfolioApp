@@ -30,7 +30,7 @@ export const handleSearchChange = async (
     return;
   }
 
-  const url = Boolean(foodSearch) ? `/foods?by_name=${foodSearch}` : `/foods`;
+  const url = foodSearch ? `/foods?by_name=${foodSearch}` : `/foods`;
 
   const result = await read(url, 'foods');
 

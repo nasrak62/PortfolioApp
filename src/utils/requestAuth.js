@@ -6,7 +6,7 @@ const handleResult = async (result, setErrors) => {
     return setErrors(result?.errors);
   }
 
-  const { token } = result?.created;
+  const { token } = result?.created || null;
 
   if (token) {
     return token;

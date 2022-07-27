@@ -33,7 +33,7 @@ export const handleFoodRowChange = (e, index, attr, data, setData) => {
     newData[index] = recalculateValues(data[index], newValue, oldValue);
   }
 
-  setData((prev) => {
+  setData(() => {
     return newData;
   });
 };

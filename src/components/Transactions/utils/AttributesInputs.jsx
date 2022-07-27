@@ -16,6 +16,11 @@ const AttributesInputs = ({
 }) => {
   const handleChange = useCallback(
     (e, attr, options = null) => {
+      //TODO add options
+      if (options) {
+        return handleInputChange(e, attr, properties, setProperties);
+      }
+
       return handleInputChange(e, attr, properties, setProperties);
     },
     [properties, setProperties],

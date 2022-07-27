@@ -36,8 +36,7 @@ const NavBar = observer(() => {
               <motion.p
                 whileHover="hover"
                 variants={variants}
-                transition={{ duration: 0.5 }}
-              >
+                transition={{ duration: 0.5 }}>
                 {text}
               </motion.p>
             </Link>
@@ -47,8 +46,7 @@ const NavBar = observer(() => {
               <motion.p
                 whileHover="hover"
                 variants={variants}
-                transition={{ duration: 0.5 }}
-              >
+                transition={{ duration: 0.5 }}>
                 {text}
               </motion.p>
             </Link>

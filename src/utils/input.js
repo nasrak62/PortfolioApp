@@ -56,7 +56,7 @@ export const validate = (type, newValue, oldValue) => {
 };
 
 const validateInput = (type, value) => {
-  if (!Boolean(value)) {
+  if (!value) {
     return false;
   }
 

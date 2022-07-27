@@ -32,8 +32,7 @@ const TransactionsRow = ({ transaction, setTransactions, setErrors }) => {
     <StyledTransactionsRow
       variants={variants}
       whileHover="hover"
-      className={classes.container}
-    >
+      className={classes.container}>
       {ATTR.map((attr) => {
         return (
           <AttributesInputs
@@ -59,8 +58,7 @@ const TransactionsRow = ({ transaction, setTransactions, setErrors }) => {
               setTransactions,
               getTransactions,
             )
-          }
-        >
+          }>
           <FontAwesomeIcon icon={faCircleCheck} />
         </button>
 
@@ -73,8 +71,7 @@ const TransactionsRow = ({ transaction, setTransactions, setErrors }) => {
               setTransactions,
               getTransactions,
             )
-          }
-        >
+          }>
           <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>

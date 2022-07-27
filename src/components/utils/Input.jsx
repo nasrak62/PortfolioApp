@@ -15,6 +15,10 @@ const Input = ({
 }) => {
   const makeChange = useCallback(
     (e, attr, options = null) => {
+      if (options) {
+        return handleInputChange(e, attr, data, setData);
+      }
+
       return handleInputChange(e, attr, data, setData);
     },
     [data, setData],
