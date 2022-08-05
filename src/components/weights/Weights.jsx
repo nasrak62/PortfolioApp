@@ -1,19 +1,11 @@
 import useFetchData from 'hooks/fetchData';
 import { useWindowSize } from 'hooks/window';
-import capitalize from 'lodash/capitalize';
-import React, { useMemo } from 'react';
+import { FormControlLabel } from 'material-ui';
+import { Button } from 'material-ui';
+import { Checkbox } from 'material-ui';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from 'recharts';
-
-import { DAYS } from 'utils/date';
-import { parseWeights } from './utils/chart';
+import Chart from './Chart';
 
 import { classes, StyledWeights } from './Weights.style';
 
@@ -23,51 +15,11 @@ const Weights = () => {
   const [weights] = useFetchData(url, 'weights');
   const windowSize = useWindowSize();
 
-  const charts = useMemo(() => {
-    const data = weights ? parseWeights(weights) : [];
+  const [showKG, setShowKG] = useState(false);
 
-    const weekWights = DAYS.WEEK > data.length ? data : data.slice(DAYS.WEEK);
-    const monthWights = DAYS.WEEK > data.length ? data : data.slice(DAYS.MONTH);
-    const yearWights = DAYS.WEEK > data.length ? data : data.slice(DAYS.YEAR);
-
-    const dataSets = { week: weekWights, month: monthWights, year: yearWights };
-
-    return (
-      <div className={classes.chartsContainer}>
-        {Object.keys(dataSets).map((type) => {
-          return (
-            <div
-              key={`charts-by-date-${type}`}
-              className={classes.chartContainer}>
-              <div className={classes.chartTitleContainer}>
-                <h1 className={classes.chartHeaderContainer}>
-                  This {capitalize(type)} Weights
-                </h1>
-              </div>
-
-              <div className={classes.chart}>
-                <LineChart
-                  className={classes.chartInner}
-                  width={windowSize?.width * 0.8}
-                  height={windowSize?.height * 0.3}
-                  data={dataSets[type]}>
-                  <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                  <CartesianGrid stroke="#ffffff" />
-                  <XAxis
-                    className={classes.xAxis}
-                    dataKey="name"
-                    stroke="#ffffff"
-                  />
-                  <YAxis className={classes.xAxis} stroke="#ffffff" />
-                  <Tooltip />
-                </LineChart>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }, [weights, windowSize]);
+  const handleCheck = useCallback(() => {
+    setShowKG((prev) => !prev);
+  });
 
   return (
     <StyledWeights
@@ -79,13 +31,30 @@ const Weights = () => {
         </div>
         <div className={classes.linkContainer}>
           <Link className={classes.link} to="/weights/new">
-            Create New Weight
+            <Button variant="contained">Create New Weight</Button>
           </Link>
           <Link className={classes.link} to="/weights/edit">
-            Update Weight
+            <Button variant="contained">Update Weight</Button>
           </Link>
+          <div className={classes.link}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={showKG}
+                  onChange={handleCheck}
+                  inputProps={{ 'aria-label': 'control' }}
+                />
+              }
+              label="Show weight in KG"
+            />
+          </div>
         </div>
-        {charts}
+        <Chart
+          weights={weights}
+          windowSize={windowSize}
+          showKG={showKG}
+          classes={classes}
+        />
       </div>
     </StyledWeights>
   );

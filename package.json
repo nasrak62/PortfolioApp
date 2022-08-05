@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
+    "@mui/material": "^5.9.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "dat.gui": "^0.7.9",
     "framer-motion": "^6.3.3",
     "lodash": "^4.17.21",
     "mobx": "^6.5.0",
@@ -21,6 +25,7 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.1.10",
     "styled-components": "^5.3.5",
+    "three": "^0.142.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

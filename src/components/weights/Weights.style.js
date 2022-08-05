@@ -23,7 +23,8 @@ export const StyledWeights = styled('div')(({ height }) => ({
   [`&.${classes.container}`]: {
     width: '100%',
     height: '100%',
-    backgroundImage: `linear-gradient(#0c8ee5,#008b44)`,
+    // backgroundImage: `linear-gradient(#0c8ee5,#008b44)`,
+    backgroundImage: '#cccccc',
   },
 
   [`& .${classes.subContainer}`]: {
@@ -57,14 +58,14 @@ export const StyledWeights = styled('div')(({ height }) => ({
 
   [`& .${classes.link}`]: {
     textDecoration: 'none',
-    border: '1px solid #ffffff',
-    borderRadius: 5,
-    padding: '1%',
-    paddingRight: '2%',
-    paddingLeft: '2%',
-    color: '#000000',
-    backgroundColor: '#ffffff',
-    boxShadow: '1px 1px 5px 2px #302c2c',
+    // border: '1px solid #ffffff',
+    // borderRadius: 5,
+    // padding: '1%',
+    // paddingRight: '2%',
+    // paddingLeft: '2%',
+    // color: '#000000',
+    // backgroundColor: '#ffffff',
+    // boxShadow: '1px 1px 5px 2px #302c2c',
   },
 
   [`& .${classes.chartsContainer}`]: {

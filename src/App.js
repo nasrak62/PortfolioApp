@@ -11,7 +11,7 @@ const App = observer(({ store }) => {
   return (
     <StoreContext.Provider value={store}>
       <Router>
-        <NavBar />
+        {store.navbarVisible && <NavBar />}
         <AppRoutes store={store} />
       </Router>
     </StoreContext.Provider>

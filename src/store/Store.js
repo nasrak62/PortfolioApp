@@ -4,13 +4,17 @@ import { loadFromMemory, saveToMemory, STORAGE } from 'utils/storage';
 class Store {
   token = loadFromMemory(STORAGE.TOKEN) || ''; // load from storage
   loggedIn = loadFromMemory(STORAGE.LOGGED_IN) || false;
+  navbarVisible = true;
 
   constructor() {
     makeObservable(this, {
       token: observable,
       loggedIn: observable,
+      navbarVisible: observable,
       login: action,
       logout: action,
+      showNavbar: action,
+      hideNavbar: action,
     });
   }
 
@@ -28,6 +32,14 @@ class Store {
 
     saveToMemory(STORAGE.TOKEN, '');
     saveToMemory(STORAGE.LOGGED_IN, false);
+  }
+
+  showNavbar() {
+    this.navbarVisible = true;
+  }
+
+  hideNavbar() {
+    this.navbarVisible = false;
   }
 }
 

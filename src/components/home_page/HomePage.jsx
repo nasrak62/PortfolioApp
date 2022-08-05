@@ -1,34 +1,20 @@
 import React, { useRef, useEffect } from 'react';
-import { createCanvas } from 'utils/canvas';
+import { init } from 'Threejs/setup';
+// import THREE from '../../Threejs/three';
+// import { createCanvas } from 'utils/canvas';
 
-import { StyledHomePage, classes } from './HomePage.styles';
+// import { StyledHomePage, classes } from './HomePage.styles';
+// import BasicWorldDemo from 'Threejs/basic_world';
 
 const HomePage = () => {
+  // const [renderer, setRenderer] = useState(null);
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (canvasRef?.current) {
-      const animationId = createCanvas(canvasRef?.current);
+    init(canvasRef?.current);
+  }, [canvasRef?.current]);
 
-      return () => window.cancelAnimationFrame(animationId);
-    }
-  }, []);
-
-  return (
-    <StyledHomePage className={classes.container}>
-      <canvas ref={canvasRef}></canvas>
-      {/* <div className={classes.titleContainer}>
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          variants={variants}
-          className={classes.title}
-        >
-          Home Page
-        </motion.h1>
-      </div> */}
-    </StyledHomePage>
-  );
+  return <div ref={canvasRef}></div>;
 };
 
 export default HomePage;
