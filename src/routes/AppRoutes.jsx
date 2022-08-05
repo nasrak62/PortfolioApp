@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
-import loadable from '@loadable/component';
+import loadable from 'utils/loadable';
 
 // import HomePage from '../components/home_page/HomePage';
 // import Login from 'components/login/Login';
@@ -17,37 +17,63 @@ import loadable from '@loadable/component';
 // import Meals from 'components/meals/Meals';
 // import NewMeal from 'components/meals/create/NewMeal';
 
-const HomePage = loadable(() => import('components/home_page/HomePage'));
-const Login = loadable(() => import('components/login/Login'));
-const Register = loadable(() => import('components/register/Register'));
+const HomePage = loadable(() =>
+  import(/* webpackChunkName: "HomePage" */ 'components/home_page/HomePage'),
+);
+const Login = loadable(() =>
+  import(/* webpackChunkName: "Login" */ 'components/login/Login'),
+);
+const Register = loadable(() =>
+  import(/* webpackChunkName: "Register" */ 'components/register/Register'),
+);
 
 const Transactions = loadable(() =>
-  import('components/Transactions/Transactions'),
+  import(
+    /* webpackChunkName: "Transactions" */ 'components/Transactions/Transactions'
+  ),
 );
 
 const NewTransaction = loadable(() =>
-  import('components/Transactions/new_transaction/NewTransaction'),
+  import(
+    /* webpackChunkName: "NewTransaction" */ 'components/Transactions/new_transaction/NewTransaction'
+  ),
 );
 
-const Weights = loadable(() => import('components/weights/Weights'));
+const Weights = loadable(() =>
+  import(/* webpackChunkName: "Weights" */ 'components/weights/Weights'),
+);
 
 const NewWeight = loadable(() =>
-  import('components/weights/NewWeight/NewWeight'),
+  import(
+    /* webpackChunkName: "NewWeight" */ 'components/weights/NewWeight/NewWeight'
+  ),
 );
 
 const EditWeight = loadable(() =>
-  import('components/weights/EditWeight/EditWeight'),
+  import(
+    /* webpackChunkName: "EditWeight" */ 'components/weights/EditWeight/EditWeight'
+  ),
 );
 
-const Foods = loadable(() => import('components/foods/Foods'));
+const Foods = loadable(() =>
+  import(/* webpackChunkName: "Foods" */ 'components/foods/Foods'),
+);
 
-const NewFood = loadable(() => import('components/foods/create/NewFood'));
+const NewFood = loadable(() =>
+  import(/* webpackChunkName: "NewFood" */ 'components/foods/create/NewFood'),
+);
 
-const EditFood = loadable(() => import('components/foods/update/EditFood'));
+const EditFood = loadable(() =>
+  import(/* webpackChunkName: "EditFood" */ 'components/foods/update/EditFood'),
+);
 
-const Meals = loadable(() => import('components/meals/Meals'));
+const Meals = loadable(() =>
+  import(/* webpackChunkName: "Meals" */ 'components/meals/Meals'),
+);
 
-const NewMeal = loadable(() => import('components/meals/create/NewMeal'));
+const NewMeal = loadable(() =>
+  import(/* webpackChunkName: "NewMeal" */ 'components/meals/create/NewMeal'),
+);
 
 const AppRoutes = observer(({ store }) => {
   const loggedIn = store?.token && store?.loggedIn;
