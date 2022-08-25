@@ -30,11 +30,11 @@ const handleMovement = (delta, player) => {
   }
 
   if (player.keys.forward) {
-    velocity.z += acc.z * delta * 8;
+    velocity.z += acc.z * delta * 10;
   }
 
   if (player.keys.backward) {
-    velocity.z -= acc.z * delta * 8;
+    velocity.z -= acc.z * delta * 10;
   }
 
   if (player.keys.left) {
@@ -98,7 +98,7 @@ const updateCamera = (delta, player, world) => {
 
 const updateMixer = (delta, player) => {
   if (player.currentState.name === 'walk') {
-    return player.mixer.update(delta * 2);
+    return player.mixer.update(delta * 1.2);
   }
 
   player.mixer.update(delta);
@@ -108,7 +108,7 @@ export const updateControls = (delta, player, world) => {
   if (!player.model || !player.currentState || !player.mixer) {
     return;
   }
-  console.log({ player });
+
   updateState(delta, player);
 
   handleMovement(delta, player);
