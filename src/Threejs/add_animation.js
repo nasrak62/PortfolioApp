@@ -1,46 +1,60 @@
-import THREE, { FBXLoader } from './three';
+// import THREE, { FBXLoader } from './three';
+import THREE from './three';
+import { switchState } from 'Threejs/state';
 
-export const addAnimation = (player, mixers, animation) => {
-  const anim = new FBXLoader();
+export const addAnimation = async (player) => {
+  player.mixer = new THREE.AnimationMixer(player.model);
+  console.log(player.objectModel);
+  const clip = player.objectModel.animations[1];
+  const action = player.mixer.clipAction(clip);
 
-  return new Promise((resolve) => {
-    anim.load(animation, (anim) => {
-      let m = new THREE.AnimationMixer(player);
-      mixers[`${animation}`] = m;
-      let action = m.clipAction(anim.animations[0]);
-      action.clampWhenFinished = true;
-      action.loop = THREE.LoopOnce;
-
-      resolve(action);
-    });
-  });
-};
-
-const loadAnimation = (mixer, animations, name, animation) => {
-  const clip = animation.animations[0];
-  const action = mixer.clipAction(clip);
-
-  animations[name] = {
+  player.animations['idle'] = {
     clip: clip,
     action: action,
   };
+
+  const clip2 = player.objectModel.animations[0];
+  const action2 = player.mixer.clipAction(clip2);
+
+  player.animations['walk'] = {
+    clip: clip2,
+    action: action2,
+  };
+
+  switchState('idle', player);
+
+  // const keys = Object.keys(player.animationObject);
+  // const promises = [];
+
+  // keys.forEach((key) => {
+  //   promises.push(loader.loadAsync(player.animationObject[key]));
+  // });
+
+  // const animationList = await Promise.all(promises);
+
+  // keys.forEach((key, index) => {
+  //   loadAnimation(player, key, animationList[index]);
+  // });
 };
 
-export const addAnimationWithManager = (
-  mixer,
-  animations,
-  manager,
-  animationObject,
-) => {
-  const loader = new FBXLoader(manager);
+// const loadAnimation = (player, name, animation) => {
+//   const clip = animation.animations[0];
+//   const action = player.mixer.clipAction(clip);
 
-  return new Promise((resolve) => {
-    Object.keys(animationObject).forEach((key) => {
-      loader.load(animationObject[key], (animation) => {
-        loadAnimation(mixer, animations, key, animation);
-      });
-    });
+//   player.animations[name] = {
+//     clip: clip,
+//     action: action,
+//   };
 
-    resolve(true);
-  });
-};
+//   if (name === 'idle') {
+//     switchState('idle', player);
+//   }
+// };
+
+// export const addAnimationWithManager = (player) => {
+//   Object.keys(player.animationObject).forEach((key) => {
+//     loader.load(player.animationObject[key], (animation) => {
+//       loadAnimation(player, key, animation);
+//     });
+//   });
+// };

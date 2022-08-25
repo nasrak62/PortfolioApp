@@ -6,6 +6,7 @@ import { getInputType } from 'utils/input';
 import { classes, StyledChangeWeight } from './ChangeWeight.styles';
 import ShowWhen from 'components/utils/ShowWhen';
 import { Link } from 'react-router-dom';
+import { Button } from 'material-ui';
 
 const ChangeWeight = ({
   weightChangeClick,
@@ -42,7 +43,10 @@ const ChangeWeight = ({
 
       {Object.keys(weight).map((attr) => {
         return (
-          <div key={`new-weight-${attr}-div`}>
+          <div
+            key={`new-weight-${attr}-div`}
+            className={classes.inputContainer}>
+            <p className={classes.label}>{attr}</p>
             <Input
               classes={classes}
               attr={attr}
@@ -57,17 +61,24 @@ const ChangeWeight = ({
         );
       })}
 
-      <div>
-        <button onClick={handleClick}>{buttonText}</button>
+      <div className={classes.options}>
+        <div>
+          <Button variant="contained" onClick={handleClick}>
+            {buttonText}
+          </Button>
+        </div>
+        <div>
+          <Link className={classes.link} to="/weights">
+            <Button variant="contained" color="secondary">
+              Back
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <ShowWhen condition={Boolean(created)}>
         <p className={classes.done}>Done!</p>
       </ShowWhen>
-
-      <Link className={classes.link} to="/weights">
-        Back
-      </Link>
     </StyledChangeWeight>
   );
 };

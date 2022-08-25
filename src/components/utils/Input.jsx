@@ -30,7 +30,7 @@ const Input = ({
     return (
       <input
         key={keyProp}
-        className={classes}
+        className={classes?.innerInput}
         value={value}
         type={type}
         name={attr}
@@ -43,7 +43,7 @@ const Input = ({
   return (
     <input
       key={keyProp}
-      className={classes}
+      className={classes?.innerInput}
       value={value}
       type={type}
       name={attr}

@@ -1,8 +1,6 @@
 import useFetchData from 'hooks/fetchData';
 import { useWindowSize } from 'hooks/window';
-import { FormControlLabel } from 'material-ui';
-import { Button } from 'material-ui';
-import { Checkbox } from 'material-ui';
+import { FormControlLabel, Button, Checkbox } from 'material-ui';
 import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Chart from './Chart';

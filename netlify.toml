@@ -1,0 +1,14 @@
+[build]
+  command = "yarn build"
+  publish="build/"
+  base = ""
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+
+[context.production]
+    SERVER=https
+    REACT_APP_SERVER_URL=https://expenses-server-saar.herokuapp.com/api/v1

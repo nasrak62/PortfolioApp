@@ -3,20 +3,6 @@ import { useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import loadable from 'utils/loadable';
 
-// import HomePage from '../components/home_page/HomePage';
-// import Login from 'components/login/Login';
-// import Register from 'components/register/Register';
-// import Transactions from 'components/Transactions/Transactions';
-// import NewTransaction from 'components/Transactions/new_transaction/NewTransaction';
-// import Weights from 'components/weights/Weights';
-// import NewWeight from 'components/weights/NewWeight/NewWeight';
-// import EditWeight from 'components/weights/EditWeight/EditWeight';
-// import Foods from 'components/foods/Foods';
-// import NewFood from 'components/foods/create/NewFood';
-// import EditFood from 'components/foods/update/EditFood';
-// import Meals from 'components/meals/Meals';
-// import NewMeal from 'components/meals/create/NewMeal';
-
 const HomePage = loadable(() =>
   import(/* webpackChunkName: "HomePage" */ 'components/home_page/HomePage'),
 );
@@ -75,6 +61,10 @@ const NewMeal = loadable(() =>
   import(/* webpackChunkName: "NewMeal" */ 'components/meals/create/NewMeal'),
 );
 
+const Game1 = loadable(() =>
+  import(/* webpackChunkName: "Game1" */ 'components/games/game1/Game1'),
+);
+
 const AppRoutes = observer(({ store }) => {
   const loggedIn = store?.token && store?.loggedIn;
 
@@ -91,6 +81,7 @@ const AppRoutes = observer(({ store }) => {
         <Route exact path="/foods/edit/:id" element={<EditFood />} />
         <Route exact path="/meals" element={<Meals />} />
         <Route exact path="/meals/new" element={<NewMeal />} />
+        <Route exact path="/games/game1" element={<Game1 />} />
       </>
     );
   }, []);

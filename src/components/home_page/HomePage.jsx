@@ -1,13 +1,7 @@
 import React, { useRef, useEffect } from 'react';
-import { init } from 'Threejs/setup';
-// import THREE from '../../Threejs/three';
-// import { createCanvas } from 'utils/canvas';
-
-// import { StyledHomePage, classes } from './HomePage.styles';
-// import BasicWorldDemo from 'Threejs/basic_world';
+import init from 'Threejs/Earth/setup';
 
 const HomePage = () => {
-  // const [renderer, setRenderer] = useState(null);
   const canvasRef = useRef(null);
 
   useEffect(() => {

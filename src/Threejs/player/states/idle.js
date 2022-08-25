@@ -1,12 +1,16 @@
-const { State } = require('Threejs/state_machine');
+const { State, switchState } = require('Threejs/state');
 
 const exit = () => {};
 
 const enter = (prevState, animations) => {
   const idleAction = animations['idle'].action;
+  if (!idleAction) {
+    return;
+  }
 
   if (prevState) {
     const prevAction = animations[prevState.name].action;
+    idleAction.reset();
     idleAction.time = 0.0;
     idleAction.enabled = true;
     idleAction.setEffectiveTimeScale(1.0);
@@ -14,28 +18,31 @@ const enter = (prevState, animations) => {
     idleAction.crossFadeFrom(prevAction, 0.5, true);
     idleAction.play();
   } else {
+    idleAction.reset();
+    idleAction.time = 0.0;
+    idleAction.enabled = true;
+    idleAction.setEffectiveTimeScale(1.0);
+    idleAction.setEffectiveWeight(1.0);
     idleAction.play();
   }
 };
 
-const update = (delta, keys, stateMachine, animations) => {
-  if (keys.forward || keys.backward) {
-    return (stateMachine.currentState = stateMachine.switchState(
-      'walk',
-      animations,
-    ));
+const update = (delta, player) => {
+  if (player.keys.forward || player.keys.backward) {
+    switchState('walk', player);
+
+    return;
   }
 
-  if (keys.space) {
-    return (stateMachine.currentState = stateMachine.switchState(
-      'jump',
-      animations,
-    ));
+  if (player.keys.space) {
+    console.log('jump');
   }
+
+  switchState('idle', player);
 };
 
-const idleState = (parent) => {
-  const state = new State(parent, 'walk', enter, exit, update);
+const idleState = () => {
+  const state = new State('idle', enter, exit, update);
 
   return state;
 };

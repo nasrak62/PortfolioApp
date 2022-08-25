@@ -26,10 +26,12 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
     });
   }
 
-  const weekWeights = DAYS.WEEK > data.length ? data : data.slice(DAYS.WEEK);
+  const weekWeights = data?.length > DAYS.WEEK ? data.slice(DAYS.WEEK) : data;
 
-  const monthWeights = DAYS.WEEK > data.length ? data : data.slice(DAYS.MONTH);
-  const yearWeights = DAYS.WEEK > data.length ? data : data.slice(DAYS.YEAR);
+  const monthWeights =
+    data?.length > DAYS.MONTH ? data.slice(DAYS.MONTH) : data;
+
+  const yearWeights = data?.length > DAYS.YEAR ? data.slice(DAYS.YEAR) : data;
 
   const dataSets = {
     week: weekWeights,
@@ -41,10 +43,6 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
     <div className={classes.chartsContainer}>
       {Object.keys(dataSets).map((type) => {
         let maxData = Number(getMaxWeight(dataSets[type]) / 2);
-
-        {
-          /* maxData = maxData > 0 ? maxData : 20; */
-        }
 
         maxData = 20;
 

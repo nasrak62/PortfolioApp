@@ -1,15 +1,19 @@
 import { observer } from 'mobx-react-lite';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import ByCondition from 'components/utils/ByCondition';
 import useStore from 'hooks/useStore';
 import { StyledNavBar, classes } from './NavBar.styles';
+import NavDropdown from './NavDropdown';
+import ShowWhen from 'components/utils/ShowWhen';
+import MotionLink from 'components/utils/MotionLink';
 
 const NavBar = observer(() => {
   const store = useStore();
   const loggedIn = store?.token && store?.loggedIn;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openMenu, setOpenMenu] = useState(true);
+  const open = Boolean(anchorEl);
 
   const logout = useCallback(() => {
     store?.logout();
@@ -18,71 +22,118 @@ const NavBar = observer(() => {
   const variants = useMemo(
     () => ({
       hover: {
-        scale: [1, 1.5, 1.7, 2, 1.7, 1.5, 1],
-        rotate: [0, 270, 540, 810, 1080, 1350, 1440],
-        borderRadius: ['25%', '50%', '75%', '100%', '75%', '50%', '25%'],
+        // scale: [1, 1.5, 1.7, 2, 1.7, 1.5, 1],
+        // rotate: [0, 270, 540, 810, 1080, 1350, 1440],
+        // borderRadius: ['25%', '50%', '75%', '100%', '75%', '50%', '25%'],
       },
     }),
     [],
   );
 
-  const motionLink = useCallback(
-    (text, url, onClick = null) => {
-      return (
-        <ByCondition
-          condition={onClick}
-          ifFalse={
-            <Link className={classes.link} to={url}>
-              <motion.p
-                whileHover="hover"
-                variants={variants}
-                transition={{ duration: 0.5 }}>
-                {text}
-              </motion.p>
-            </Link>
-          }
-          ifTrue={
-            <Link className={classes.link} to={url} onClick={onClick}>
-              <motion.p
-                whileHover="hover"
-                variants={variants}
-                transition={{ duration: 0.5 }}>
-                {text}
-              </motion.p>
-            </Link>
-          }
-        />
-      );
+  const setAnchor = useCallback(
+    (event) => {
+      setAnchorEl(event.currentTarget);
     },
-    [variants],
+    [setAnchorEl],
   );
 
-  return (
-    <StyledNavBar className={classes.navContainer}>
-      <p className={classes.link}>Logo</p>
-      <div className={classes.container}>
-        {motionLink('Home', '/')}
+  const handleClose = useCallback(() => {
+    setAnchorEl(null);
+  }, [setAnchorEl]);
 
-        <ByCondition
-          condition={loggedIn}
-          ifTrue={
-            <>
-              {motionLink('Transactions', '/transactions')}
-              {motionLink('Weights', '/weights')}
-              {motionLink('Foods', '/foods')}
-              {motionLink('Meals', '/meals')}
-              {motionLink('icon', '/transactions')}
-              {motionLink('Sign Out', '/', logout)}
-            </>
-          }
-          ifFalse={
-            <>
-              {motionLink('Register', '/register')}
-              {motionLink('Login', '/login')}
-            </>
-          }
-        />
-      </div>
+  const handleLogoClick = useCallback(() => {
+    setOpenMenu((prev) => !prev);
+  }, [setOpenMenu]);
+
+  return (
+    <StyledNavBar className={classes.navContainer} cssOpenMenu={openMenu}>
+      <p className={classes.link} onClick={handleLogoClick}>
+        Logo
+      </p>
+      <ShowWhen condition={openMenu}>
+        <div className={classes.container}>
+          <MotionLink
+            text="Home"
+            url="/"
+            onClick={null}
+            variants={variants}
+            classes={classes}
+          />
+
+          <ByCondition
+            condition={loggedIn}
+            ifTrue={
+              <>
+                <MotionLink
+                  text="Transactions"
+                  url="/transactions"
+                  onClick={null}
+                  variants={variants}
+                  classes={classes}
+                />
+                <MotionLink
+                  text="Weights"
+                  url="/weights"
+                  onClick={null}
+                  variants={variants}
+                  classes={classes}
+                />
+                <MotionLink
+                  text="Foods"
+                  url="/foods"
+                  onClick={null}
+                  variants={variants}
+                  classes={classes}
+                />
+
+                <p onClick={setAnchor}>Games</p>
+                <NavDropdown
+                  handleClose={handleClose}
+                  anchorEl={anchorEl}
+                  open={open}
+                  variants={variants}
+                  classes={classes}
+                />
+
+                <MotionLink
+                  text="Meals"
+                  url="/meals"
+                  onClick={null}
+                  variants={variants}
+                  classes={classes}
+                />
+
+                <MotionLink
+                  text="Sign Out"
+                  url="/"
+                  onClick={logout}
+                  variants={variants}
+                  classes={classes}
+                />
+              </>
+            }
+            ifFalse={
+              <>
+                <MotionLink
+                  text="Register"
+                  url="/register"
+                  onClick={null}
+                  variants={variants}
+                  classes={classes}
+                />
+
+                <MotionLink
+                  text="Login"
+                  url="/login"
+                  onClick={null}
+                  variants={variants}
+                  classes={classes}
+                />
+              </>
+            }
+          />
+        </div>
+      </ShowWhen>
     </StyledNavBar>
   );
 });

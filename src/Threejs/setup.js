@@ -1,5 +1,6 @@
 import THREE, { OrbitControls } from './three';
 import addPlayer from './player';
+import { updateControls } from './player/controller';
 
 const onResize = (camera, renderer) => {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -16,14 +17,15 @@ const addCube = (scene) => {
   return cube;
 };
 
-const animate = (world, player) => {
-  requestAnimationFrame(() => animate(world, player));
+const animate = (world, player, runId) => {
+  const frameId = requestAnimationFrame(() => animate(world, player, runId));
 
-  const { cube, renderer, scene, camera, mixers, clock, controls } = world;
+  const { cube, renderer, scene, camera, mixers, controls, clock } = world;
 
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
 
+  // const delta = (time - world.time) * 0.001;
   const delta = clock.getDelta();
 
   if (mixers) {
@@ -32,21 +34,12 @@ const animate = (world, player) => {
     });
   }
 
-  console.log({ controller: player });
-  if (player?.controller) {
-    player.controller.Update(
-      delta,
-      player.stateMachine,
-      player.keys,
-      player.animations,
-      player.model,
-      player.mixer,
-    );
-  }
+  updateControls(delta, player, world);
 
   renderer.render(scene, camera);
 
   controls.update();
+  runId.value = frameId;
 };
 
 const initRenderer = (ref) => {
@@ -135,7 +128,7 @@ const addEnvironmentStuff = (scene, camera, renderer) => {
   return controls;
 };
 
-export const init = async (ref) => {
+export const init = async (ref, runId) => {
   const world = {};
   world.scene = initScene();
   world.camera = initCamera();
@@ -150,7 +143,9 @@ export const init = async (ref) => {
     world.renderer,
   );
 
+  world.time = null;
+
   const player = await addPlayer(world.scene, world.mixers);
 
-  animate(world, player);
+  animate(world, player, runId);
 };

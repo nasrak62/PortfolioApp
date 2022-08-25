@@ -23,8 +23,8 @@ export const StyledWeights = styled('div')(({ height }) => ({
   [`&.${classes.container}`]: {
     width: '100%',
     height: '100%',
-    // backgroundImage: `linear-gradient(#0c8ee5,#008b44)`,
-    backgroundImage: '#cccccc',
+    color: '#ffffff',
+    backgroundColor: 'rgba(0,2,34)',
   },
 
   [`& .${classes.subContainer}`]: {
@@ -74,6 +74,8 @@ export const StyledWeights = styled('div')(({ height }) => ({
     width: '100%',
     height: height,
     overflowY: 'scroll',
+    msOverflowStyle: 'none',
+    scrollbarWidth: 'none',
   },
 
   [`& .${classes.chartContainer}`]: {
@@ -83,6 +85,12 @@ export const StyledWeights = styled('div')(({ height }) => ({
     justifyContent: 'center',
     textAlign: 'center',
     alignItems: 'center',
+  },
+
+  [`& ::-webkit-scrollbar`]: {
+    display: 'none',
+    color: 'inherit',
+    width: 2,
   },
 
   [`& .${classes.chartTitleContainer}`]: {

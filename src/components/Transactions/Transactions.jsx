@@ -12,6 +12,9 @@ import { StyledTransactions, classes } from './Transactions.styles';
 import Select from 'components/utils/Select';
 import { MONTHS, todayMonth, todayYear, YEARS } from 'utils/date';
 import { urlFilters } from 'utils/request';
+import { useWindowSize } from 'hooks/window';
+import ByCondition from 'components/utils/ByCondition';
+import TransactionCard from './TransactionCard';
 
 export const ATTR = ['date', 'description', 'price', 'type'];
 export const TRANSACTIONS_TYPE = ['Expense', 'Income'];
@@ -29,6 +32,9 @@ const Transactions = () => {
     url,
     'transactions',
   );
+
+  const windowSize = useWindowSize();
+  const isMobile = windowSize.width < 1024;
 
   const [displayType, setDisplayType] = useState(TRANSACTIONS_TYPE[0]);
 
@@ -150,11 +156,25 @@ const Transactions = () => {
           <TransactionsHeader type={displayType} />
           {displayList?.map((item) => {
             return (
-              <TransactionsRow
-                key={`transactions-row-${displayType}-${item?._id}`}
-                transaction={item}
-                setTransactions={setTransactions}
-                setErrors={setErrors}
+              <ByCondition
+                key={`transactions-condition-${displayType}-${item?._id}`}
+                condition={isMobile}
+                ifFalse={
+                  <TransactionsRow
+                    key={`transactions-row-${displayType}-${item?._id}`}
+                    transaction={item}
+                    setTransactions={setTransactions}
+                    setErrors={setErrors}
+                  />
+                }
+                ifTrue={
+                  <TransactionCard
+                    key={`transactions-row-${displayType}-${item?._id}`}
+                    transaction={item}
+                    setTransactions={setTransactions}
+                    setErrors={setErrors}
+                  />
+                }
               />
             );
           })}

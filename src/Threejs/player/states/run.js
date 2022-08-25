@@ -3,8 +3,7 @@ const { State, switchState } = require('Threejs/state');
 const exit = () => {};
 
 const enter = (prevState, animations) => {
-  const currentAction = animations['walk'].action;
-  console.log(animations['walk']);
+  const currentAction = animations['run'].action;
 
   if (!prevState) {
     return currentAction.play();
@@ -14,7 +13,7 @@ const enter = (prevState, animations) => {
 
   currentAction.enabled = true;
 
-  if (prevState.Name == 'run') {
+  if (prevState.Name == 'walk') {
     const ratio =
       currentAction.getClip().duration / prevAction.getClip().duration;
 
@@ -30,8 +29,8 @@ const enter = (prevState, animations) => {
 };
 
 const update = (delta, player) => {
-  if ((player.keys.forward || player.keys.backward) && player.keys.shift) {
-    switchState('run', player);
+  if ((player.keys.forward || player.keys.backward) && !player.keys.shift) {
+    switchState('walk', player);
   }
 
   if (player.keys.forward || player.keys.backward) {
@@ -41,10 +40,10 @@ const update = (delta, player) => {
   switchState('idle', player);
 };
 
-const walkState = () => {
-  const state = new State('walk', enter, exit, update);
+const runState = () => {
+  const state = new State('run', enter, exit, update);
 
   return state;
 };
 
-export default walkState;
+export default runState;
