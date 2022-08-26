@@ -10,5 +10,5 @@
 
 
 [context.production]
-    SERVER=https
-    REACT_APP_SERVER_URL=https://expenses-server-saar.herokuapp.com/api/v1
+    SERVER="https"
+    REACT_APP_SERVER_URL="https://expenses-server-saar.herokuapp.com/api/v1"
