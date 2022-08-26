@@ -1,15 +1,22 @@
 import mean from 'lodash/mean';
 import max from 'lodash/max';
 import min from 'lodash/min';
+import { displayILDate } from 'utils/date';
 
 export const parseWeights = (weights) => {
-  const new_weights = weights.map((weight) => {
-    return { name: weight?.date, value: weight?.pounds };
+  let new_weights = [...weights];
+
+  new_weights.sort((a, b) => {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
   });
 
-  return new_weights.sort((a, b) => {
-    return new Date(a.name).getTime() - new Date(b.name).getTime();
+  new_weights = new_weights.map((weight) => {
+    const displayDate = displayILDate(weight?.date);
+
+    return { name: displayDate, value: weight?.pounds };
   });
+
+  return new_weights;
 };
 
 export const getAverage = (weightsList) => {

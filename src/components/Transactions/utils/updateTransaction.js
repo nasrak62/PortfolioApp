@@ -26,7 +26,6 @@ export const handleUpdateClick = async (
 ) => {
   const params = handleParams(properties, setErrors);
   const result = await updateTransaction(params, transaction?._id);
-  console.log(result);
 
   return handleRequestResult(result, setData, setErrors, getNewData);
 };

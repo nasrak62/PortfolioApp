@@ -15,6 +15,12 @@ export const formatDate = (stringDate) => {
   return string;
 };
 
+export const displayILDate = (date) => {
+  const [year, month, day] = date.split('-');
+
+  return `${day}/${month}/${year.slice(2)}`;
+};
+
 export const todayMonth = () => {
   const month = new Date().getMonth() + 1;
 

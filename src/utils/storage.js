@@ -1,3 +1,5 @@
+import { logger } from './logger';
+
 export const STORAGE = {
   TOKEN: 'token',
   LOGGED_IN: 'loggedIn',
@@ -13,6 +15,6 @@ export const loadFromMemory = (name) => {
 
     return value;
   } catch (e) {
-    console.log(e);
+    logger(e);
   }
 };

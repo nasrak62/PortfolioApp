@@ -106,7 +106,8 @@ const Transactions = () => {
           <motion.button
             variants={variants}
             whileHover="hover"
-            className={classes.button}>
+            className={classes.button}
+          >
             <p>Create New Transaction</p>
           </motion.button>
         </Link>

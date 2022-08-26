@@ -11,7 +11,8 @@ const NavDropdown = ({ handleClose, anchorEl, open, classes, variants }) => {
       onClose={handleClose}
       MenuListProps={{
         'aria-labelledby': 'basic-button',
-      }}>
+      }}
+    >
       <MenuItem onClick={handleClose}>
         <MotionLink
           text="Game 1"

@@ -2,9 +2,8 @@ import ByCondition from 'components/utils/ByCondition';
 import Select from 'components/utils/Select';
 import Input from 'components/utils/Input';
 import { addNames, capitalize } from 'utils/strings';
-import { getInputType } from 'utils/input';
+import { getInputType, handleInputChange } from 'utils/input';
 import { useCallback } from 'react';
-import { handleInputChange } from 'utils/input';
 import { TRANSACTIONS_TYPE } from '../Transactions';
 
 const AttributesInputs = ({

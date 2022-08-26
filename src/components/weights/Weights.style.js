@@ -115,6 +115,7 @@ export const StyledWeights = styled('div')(({ height }) => ({
   [`& .${classes.chartInner}`]: {
     backgroundColor: '#000000',
     color: '#ffffff',
+    borderRadius: 5,
   },
 
   [`& .${classes.xAxis}`]: {

@@ -1,5 +1,6 @@
 import { getJson } from 'utils/request';
 import { objectHasEmpty } from 'utils/objects';
+import { logger } from 'utils/logger';
 
 export const getTransactions = async () => {
   try {
@@ -11,6 +12,8 @@ export const getTransactions = async () => {
       return { created: transactions, errors: null };
     }
   } catch (e) {
+    logger(e);
+
     return { created: null, errors: e?.errors };
   }
 };

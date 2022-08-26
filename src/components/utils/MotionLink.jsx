@@ -12,7 +12,8 @@ const MotionLink = ({ text, url, onClick = null, variants, classes }) => {
           <motion.p
             whileHover="hover"
             variants={variants}
-            transition={{ duration: 0.5 }}>
+            transition={{ duration: 0.5 }}
+          >
             {text}
           </motion.p>
         </Link>
@@ -22,7 +23,8 @@ const MotionLink = ({ text, url, onClick = null, variants, classes }) => {
           <motion.p
             whileHover="hover"
             variants={variants}
-            transition={{ duration: 0.5 }}>
+            transition={{ duration: 0.5 }}
+          >
             {text}
           </motion.p>
         </Link>

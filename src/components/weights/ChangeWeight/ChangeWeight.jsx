@@ -45,7 +45,8 @@ const ChangeWeight = ({
         return (
           <div
             key={`new-weight-${attr}-div`}
-            className={classes.inputContainer}>
+            className={classes.inputContainer}
+          >
             <p className={classes.label}>{attr}</p>
             <Input
               classes={classes}

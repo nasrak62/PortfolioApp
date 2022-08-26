@@ -36,7 +36,8 @@ const TransactionCard = ({ transaction, setTransactions, setErrors }) => {
       variants={variants}
       whileHover="hover"
       component={motion.div}
-      className={classes.container}>
+      className={classes.container}
+    >
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           {ATTR.map((attr) => {
@@ -69,7 +70,8 @@ const TransactionCard = ({ transaction, setTransactions, setErrors }) => {
               setTransactions,
               getTransactions,
             )
-          }>
+          }
+        >
           <FontAwesomeIcon icon={faCircleCheck} />
         </button>
 
@@ -82,7 +84,8 @@ const TransactionCard = ({ transaction, setTransactions, setErrors }) => {
               setTransactions,
               getTransactions,
             )
-          }>
+          }
+        >
           <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>

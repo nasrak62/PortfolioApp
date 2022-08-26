@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCallback } from 'react';
 import { destroyAndGetUpdatedData } from 'utils/crud';
 import { foodsFromMeal, handleEditLink, onDeleteMeal } from './utils';

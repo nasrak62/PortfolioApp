@@ -3,6 +3,7 @@ import axios from 'axios';
 import { objectHasEmpty } from './objects';
 import { isEmpty } from 'utils/lodash';
 import store from 'store/Store';
+import { logger } from './logger';
 
 export const toServer = (endPoint) => {
   let url = process.env.REACT_APP_SERVER_URL;
@@ -44,8 +45,11 @@ const handleError = (e) => {
 export const postJson = async (bodyJson, url) => {
   try {
     const result = await axios.post(toServer(url), bodyJson, jsonHeaders());
+
     return handleSuccess(result);
   } catch (e) {
+    logger(e);
+
     return handleError(e);
   }
 };
@@ -56,6 +60,8 @@ export const patchJson = async (bodyJson, url) => {
 
     return handleSuccess(result);
   } catch (e) {
+    logger(e);
+
     return handleError(e);
   }
 };
@@ -66,6 +72,8 @@ export const deleteJson = async (url) => {
 
     return handleSuccess(result);
   } catch (e) {
+    logger(e);
+
     return handleError(e);
   }
 };
@@ -76,6 +84,8 @@ export const getJson = async (url) => {
 
     return handleSuccess(result);
   } catch (e) {
+    logger(e);
+
     return handleError(e);
   }
 };

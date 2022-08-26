@@ -4,7 +4,6 @@ const exit = () => {};
 
 const enter = (prevState, animations) => {
   const currentAction = animations['walk'].action;
-  console.log(animations['walk']);
 
   if (!prevState) {
     return currentAction.play();

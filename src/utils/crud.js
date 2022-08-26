@@ -1,6 +1,7 @@
 import { isEmpty } from 'lodash';
 import { objectHasEmpty } from 'utils/objects';
 import { deleteJson, getJson, patchJson, postJson } from 'utils/request';
+import { logger } from './logger';
 
 export const parseBody = (paramsObj) => {
   let body = {};
@@ -53,7 +54,8 @@ export const crud = async (method, url, name, paramsObj = null) => {
 
     return result;
   } catch (error) {
-    console.log(error);
+    logger(error);
+
     return { created: null, errors: 'error' };
   }
 };

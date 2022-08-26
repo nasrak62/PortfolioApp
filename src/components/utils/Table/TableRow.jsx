@@ -38,7 +38,6 @@ const TableRow = ({
   const textOrInput = useCallback(
     (attr, item, index) => {
       if (inputs?.[attr]) {
-        console.log(item[attr]);
         return (
           <Input
             classes={classes}

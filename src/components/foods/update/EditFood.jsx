@@ -41,8 +41,6 @@ const EditFood = () => {
       paramsObj[key] = food[key].value;
     });
 
-    console.log(paramsObj);
-
     const { errors } = await update(paramsObj, url, name);
 
     if (errors) {
@@ -52,7 +50,6 @@ const EditFood = () => {
     return setCreated(true);
   }, [food, id, setError]);
 
-  console.log(error);
   return (
     <FoodInputs
       onClick={updateFood}

@@ -22,7 +22,8 @@ const Weights = () => {
   return (
     <StyledWeights
       className={classes.container}
-      height={windowSize?.height * 0.8 || 1000}>
+      height={windowSize?.height * 0.8 || 1000}
+    >
       <div className={classes.subContainer}>
         <div className={classes.headerContainer}>
           <h1 className={classes.header}>Weights</h1>
@@ -41,6 +42,9 @@ const Weights = () => {
                   checked={showKG}
                   onChange={handleCheck}
                   inputProps={{ 'aria-label': 'control' }}
+                  style={{
+                    color: '#ffffff',
+                  }}
                 />
               }
               label="Show weight in KG"

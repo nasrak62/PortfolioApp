@@ -20,7 +20,6 @@ const Overview = ({ meal, classes }) => {
 
     if (attr !== 'name' && attr !== 'foods' && attr !== 'calories') {
       const amount = meal.amount || 1;
-      console.log(amount);
       dataPercentage.push({ name: attr, value: meal[attr] / amount });
     }
   });
@@ -43,7 +42,8 @@ const Overview = ({ meal, classes }) => {
                 right: 10,
                 left: 5,
                 bottom: 5,
-              }}>
+              }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis dataKey="value" />
@@ -65,7 +65,8 @@ const Overview = ({ meal, classes }) => {
                 right: 10,
                 left: 5,
                 bottom: 5,
-              }}>
+              }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis dataKey="value" />

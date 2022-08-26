@@ -31,10 +31,12 @@ const LoginForm = ({
       return (
         <div
           className={classes.inputContainer}
-          key={`${buttonText}-div-${capitalize(attr)}`}>
+          key={`${buttonText}-div-${capitalize(attr)}`}
+        >
           <p
             className={classes.label}
-            key={`${buttonText}-p-${capitalize(attr)}`}>
+            key={`${buttonText}-p-${capitalize(attr)}`}
+          >
             {`${capitalize(attr)}:`}
           </p>
 

@@ -51,7 +51,6 @@ const Table = ({ data, setData, inputs = null }) => {
   );
 
   const showData = useMemo(() => {
-    console.log(data);
     return data?.map((item, index) => {
       return (
         <tr key={`food-item-${item?._id}`} className={classes.row}>
@@ -87,7 +86,8 @@ const Table = ({ data, setData, inputs = null }) => {
                   'foods',
                   setData,
                 )
-              }>
+              }
+            >
               <FontAwesomeIcon icon={faTrash} />
             </button>
           </td>

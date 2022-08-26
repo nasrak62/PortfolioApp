@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import FoodsTable from 'components/utils/Table/Table';
 import Input from 'components/utils/Input';
-import { useCallback } from 'react';
 import ShowWhen from 'components/utils/ShowWhen';
 import { isEmpty } from 'utils/lodash';
 import Overview from '../Overview';
@@ -56,10 +55,7 @@ const NewMeal = () => {
 
   const handleClick = useCallback(async () => {
     const body = meal;
-    console.log(meal);
     const result = await create(body, '/meals', 'meal');
-
-    console.log(result);
   }, [meal]);
 
   const removeFromSearch = useCallback((item, setData) => {

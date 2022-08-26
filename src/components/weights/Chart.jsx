@@ -5,9 +5,9 @@ import {
   XAxis,
   YAxis,
   Tooltip,
+  ResponsiveContainer,
 } from 'recharts';
 import capitalize from 'lodash/capitalize';
-import { Paper } from 'material-ui';
 
 import { DAYS } from 'utils/date';
 import {
@@ -60,32 +60,37 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
 
             <div className={classes.chartTitleContainer}>
               <h2 className={classes.chartHeaderContainer}>
-                Average: {getAverage(dataSets[type])}
+                Average: {getAverage(dataSets[type]).toFixed(2)}
               </h2>
             </div>
 
-            <Paper className={classes.chart} elevation={10}>
+            <ResponsiveContainer
+              width="100%"
+              height={windowSize?.height * 0.5 || 400}>
               <LineChart
+                margin={{ top: 20, left: 20, right: 20, bottom: 20 }}
                 className={classes.chartInner}
-                width={windowSize?.width * 0.8}
-                height={windowSize?.height * 0.3}
+                // width={windowSize?.width * 0.9}
+                // height={windowSize?.height * 0.5}
                 data={dataSets[type]}>
                 <Line type="monotone" dataKey="value" stroke="#8884d8" />
                 <CartesianGrid stroke="#ffffff" />
                 <XAxis
                   className={classes.xAxis}
                   dataKey="name"
+                  dy={10}
                   stroke="#ffffff"
                 />
                 <YAxis
                   className={classes.xAxis}
                   stroke="#ffffff"
                   type="number"
+                  dx={-10}
                   domain={[`dataMin - ${minData}`, `dataMax + ${maxData}`]}
                 />
                 <Tooltip />
               </LineChart>
-            </Paper>
+            </ResponsiveContainer>
           </div>
         );
       })}
