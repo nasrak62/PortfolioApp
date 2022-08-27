@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getJson, handleRequestResult } from 'utils/request';
+import { isEmpty } from 'utils/lodash';
 
 export default function useFetchData(url, name, fn = null) {
   const [data, setData] = useState([]);
@@ -10,6 +11,13 @@ export default function useFetchData(url, name, fn = null) {
       const response = await getJson(url);
 
       const result = await handleRequestResult(response, setData, setError);
+
+      if (isEmpty(result?.[name])) {
+        return setError({
+          toUser: 'Dont have Data',
+          fullError: result?.errors,
+        });
+      }
 
       if (fn) {
         const transformedData = fn(result?.[name]);

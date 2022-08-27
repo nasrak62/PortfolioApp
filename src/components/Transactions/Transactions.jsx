@@ -15,6 +15,7 @@ import { urlFilters } from 'utils/request';
 import { useWindowSize } from 'hooks/window';
 import ByCondition from 'components/utils/ByCondition';
 import TransactionCard from './TransactionCard';
+import { isEmpty } from 'utils/lodash';
 
 export const ATTR = ['date', 'description', 'price', 'type'];
 export const TRANSACTIONS_TYPE = ['Expense', 'Income'];
@@ -38,7 +39,7 @@ const Transactions = () => {
 
   const [displayType, setDisplayType] = useState(TRANSACTIONS_TYPE[0]);
 
-  const showError = error?.toUser || !transactions;
+  const showError = error?.toUser || !transactions || isEmpty(transactions);
 
   const expenses = useMemo(() => {
     if (showError) {
@@ -78,6 +79,8 @@ const Transactions = () => {
 
   const selectChange = useCallback(
     (e, attr, options) => {
+      setErrors({});
+
       if (isEqual(options, Object.keys(MONTHS))) {
         return setMonth({
           value: MONTHS[e?.target?.value] || month.value,
@@ -93,7 +96,7 @@ const Transactions = () => {
         return setYear(e?.target?.value || year);
       }
     },
-    [month, displayType, year],
+    [month, displayType, year, setErrors],
   );
 
   return (
@@ -106,38 +109,38 @@ const Transactions = () => {
           <motion.button
             variants={variants}
             whileHover="hover"
-            className={classes.button}
-          >
+            className={classes.button}>
             <p>Create New Transaction</p>
           </motion.button>
         </Link>
 
         <div className={classes.infoContainer}>
-          <Select
-            value={displayType}
-            attr={displayType}
-            handleChange={selectChange}
-            classes={classes}
-            options={TRANSACTIONS_TYPE}
-          />
-
           <p className={classes.total}>Total: {total}</p>
+          <div className={classes.infoSubContainer}>
+            <Select
+              value={displayType}
+              attr={displayType}
+              handleChange={selectChange}
+              classes={classes}
+              options={TRANSACTIONS_TYPE}
+            />
 
-          <Select
-            value={month.display}
-            attr={month.display}
-            handleChange={selectChange}
-            classes={classes}
-            options={Object.keys(MONTHS)}
-          />
+            <Select
+              value={month.display}
+              attr={month.display}
+              handleChange={selectChange}
+              classes={classes}
+              options={Object.keys(MONTHS)}
+            />
 
-          <Select
-            value={year}
-            attr={year}
-            handleChange={selectChange}
-            classes={classes}
-            options={YEARS}
-          />
+            <Select
+              value={year}
+              attr={year}
+              handleChange={selectChange}
+              classes={classes}
+              options={YEARS}
+            />
+          </div>
         </div>
 
         <ShowWhen condition={showError}>
@@ -154,7 +157,9 @@ const Transactions = () => {
           <h1 className={addNames(classes.title, classes.subTitle)}>
             {displayType}
           </h1>
-          <TransactionsHeader type={displayType} />
+          <ShowWhen condition={!isMobile}>
+            <TransactionsHeader type={displayType} />
+          </ShowWhen>
           {displayList?.map((item) => {
             return (
               <ByCondition

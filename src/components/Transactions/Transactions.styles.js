@@ -1,27 +1,29 @@
-import styled from 'styled-components';
-import { BREAK_POINTS } from '../../utils/styles/breakpoints';
+import { styled } from 'material-ui';
+import { classObj } from '../../utils/styles/breakpoints';
 
 const prefix = 'Transactions';
 
-export const classes = {
-  container: `${prefix}-container`,
-  expensesContainer: `${prefix}-expensesContainer`,
-  incomeContainer: `${prefix}-incomeContainer`,
-  title: `${prefix}-title`,
-  subTitle: `${prefix}-subTitle`,
-  body: `${prefix}-body`,
-  header: `${prefix}-header`,
-  headerContainer: `${prefix}-headerContainer`,
-  button: `${prefix}-button`,
-  error: `${prefix}-error`,
-  link: `${prefix}-link`,
-  select: `${prefix}-select`,
-  selectOption: `${prefix}-selectOption`,
-  infoContainer: `${prefix}-infoContainer`,
-  total: `${prefix}-total`,
-};
+export const classes = classObj(
+  prefix,
+  'container',
+  'expensesContainer',
+  'incomeContainer',
+  'title',
+  'subTitle',
+  'body',
+  'header',
+  'headerContainer',
+  'button',
+  'error',
+  'link',
+  'select',
+  'selectOption',
+  'infoContainer',
+  'total',
+  'infoSubContainer',
+);
 
-export const StyledTransactions = styled('div')({
+export const StyledTransactions = styled('div')(({ theme }) => ({
   [`&.${classes.container}`]: {
     width: '100%',
     padding: '2%',
@@ -29,7 +31,7 @@ export const StyledTransactions = styled('div')({
     flexDirection: 'column',
     justifyContent: 'center',
     textAlign: 'center',
-    backgroundImage: `linear-gradient(#001e32,#802047)`,
+    backgroundColor: 'rgba(0,2,34)',
     height: '96%',
   },
 
@@ -50,10 +52,11 @@ export const StyledTransactions = styled('div')({
       color: '#ffffff',
     },
 
-    [`@media (max-width: ${BREAK_POINTS.SM})`]: {
+    [`${theme.breakpoints.down('xl')}`]: {
       flexDirection: 'column',
       justifyContent: 'flex-start',
       rowGap: '10%',
+      height: '100%',
     },
   },
 
@@ -65,6 +68,10 @@ export const StyledTransactions = styled('div')({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      marginTop: '15%',
+    },
   },
 
   [`& .${classes.expensesContainer}`]: {
@@ -118,6 +125,10 @@ export const StyledTransactions = styled('div')({
     borderRadius: 5,
     width: '20%',
     textAlign: 'center',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      width: '33%',
+    },
   },
 
   [`& .${classes.selectOption}`]: {
@@ -126,6 +137,10 @@ export const StyledTransactions = styled('div')({
     border: 'none',
     borderRadius: 5,
     textAlign: 'center',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      width: '100%',
+    },
   },
 
   [`& .${classes.infoContainer}`]: {
@@ -136,10 +151,26 @@ export const StyledTransactions = styled('div')({
     alignItems: 'center',
     marginBottom: '1%',
     marginTop: '1%',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      flexDirection: 'column',
+      gap: '4%',
+      marginTop: '4%',
+    },
   },
 
   [`& .${classes.total}`]: {
     fontSize: 20,
     color: '#ffffff',
   },
-});
+
+  [`& .${classes.infoSubContainer}`]: {
+    [`${theme.breakpoints.down('xl')}`]: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginTop: '4%',
+      gap: '4%',
+      justifyContent: 'center',
+    },
+  },
+}));

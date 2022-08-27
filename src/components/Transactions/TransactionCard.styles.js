@@ -1,28 +1,31 @@
 import { styled, Card } from 'material-ui';
+import { classObj } from 'utils/styles/breakpoints';
 
 const prefix = 'TransactionCard';
 
-export const classes = {
-  container: `${prefix}-container`,
-  itemDate: `${prefix}-itemDate`,
-  itemPrice: `${prefix}-itemPrice`,
-  itemDescription: `${prefix}-itemDescription`,
-  itemType: `${prefix}-itemType`,
-  item: `${prefix}-item`,
-  buttonContainer: `${prefix}-buttonContainer`,
-  button: `${prefix}-button`,
-  updateButton: `${prefix}-updateButton`,
-  deleteButton: `${prefix}-deleteButton`,
-  select: `${prefix}-select`,
-  selectOption: `${prefix}-selectOption`,
-  card: `${prefix}-card`,
-  cardContent: `${prefix}-cardContent`,
-};
+export const classes = classObj(
+  prefix,
+  'container',
+  'item',
+  'itemPrice',
+  'itemDate',
+  'itemType',
+  'buttonContainer',
+  'button',
+  'updateButton',
+  'deleteButton',
+  'select',
+  'selectOption',
+  'card',
+  'cardContent',
+  'cardActions',
+  'cardDisplayContainer',
+  'cardDisplayText',
+);
 
 export const StyledTransactionCard = styled(Card)({
   [`&.${classes.container}`]: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr) 0.5fr',
+    display: 'flex',
     textAlign: 'center',
     paddingLeft: '1%',
     paddingRight: '1%',
@@ -31,38 +34,22 @@ export const StyledTransactionCard = styled(Card)({
     borderRadius: 5,
 
     [`&:nth-child(odd)`]: {
-      backgroundColor: '#0D7377',
+      backgroundColor: 'rgba(0,0,100)',
     },
 
     [`&:nth-child(even)`]: {
-      backgroundColor: '#0E185F',
+      backgroundColor: 'rgba(0,0,50)',
     },
   },
 
   [`& .${classes.item}`]: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#ffffff',
-    paddingLeft: '1%',
-    paddingRight: '2%',
+    padding: '2%',
+    margin: '2%',
     width: '100%',
-    minWidth: 'min-content',
     backgroundColor: 'inherit',
-    border: 'none',
     textAlign: 'center',
-  },
-
-  [`& .${classes.itemDate}`]: {},
-
-  [`& .${classes.itemPrice}`]: {
-    borderLeft: '1px solid white',
-  },
-
-  [`& .${classes.itemDescription}`]: {
-    borderLeft: '1px solid white',
-  },
-
-  [`& .${classes.itemType}`]: {
-    borderLeft: '1px solid white',
   },
 
   [`& .${classes.buttonContainer}`]: {
@@ -70,7 +57,6 @@ export const StyledTransactionCard = styled(Card)({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: '4%',
-    borderLeft: '1px solid #ffffff',
   },
 
   [`& .${classes.button}`]: {
@@ -105,12 +91,16 @@ export const StyledTransactionCard = styled(Card)({
   },
 
   [`& .${classes.select}`]: {
-    background: 'inherit',
-    color: '#ffffff',
-    textAlign: 'center',
     appearance: 'none',
     border: 'none',
-    borderLeft: '1px solid white',
+    fontSize: 20,
+    color: '#ffffff',
+    padding: '2%',
+    margin: '2%',
+    width: '100%',
+    minWidth: 'min-content',
+    backgroundColor: 'inherit',
+    textAlign: 'center',
   },
   [`& .${classes.selectOption}`]: {},
 
@@ -118,9 +108,32 @@ export const StyledTransactionCard = styled(Card)({
     height: 'fit-content',
     background: 'inherit',
     overflow: 'hidden',
+    width: '100%',
   },
 
   [`& .${classes.cardContent}`]: {
     height: 'fit-content',
+    width: '100%',
+  },
+
+  [`& .${classes.cardActions}`]: {
+    height: 'fit-content',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
+  [`& .${classes.cardDisplayContainer}`]: {
+    height: 'fit-content',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'start',
+    gap: '20%',
+  },
+
+  [`& .${classes.cardDisplayText}`]: {
+    color: '#ffffff',
+    width: '50%',
+    display: 'flex',
   },
 });
