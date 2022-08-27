@@ -51,7 +51,8 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
         return (
           <div
             key={`charts-by-date-${type}`}
-            className={classes.chartContainer}>
+            className={classes.chartContainer}
+          >
             <div className={classes.chartTitleContainer}>
               <h1 className={classes.chartHeaderContainer}>
                 This {capitalize(type)} Weights
@@ -66,13 +67,15 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
 
             <ResponsiveContainer
               width="100%"
-              height={windowSize?.height * 0.5 || 400}>
+              height={windowSize?.height * 0.5 || 400}
+            >
               <LineChart
                 margin={{ top: 20, left: 20, right: 20, bottom: 20 }}
                 className={classes.chartInner}
                 // width={windowSize?.width * 0.9}
                 // height={windowSize?.height * 0.5}
-                data={dataSets[type]}>
+                data={dataSets[type]}
+              >
                 <Line type="monotone" dataKey="value" stroke="#8884d8" />
                 <CartesianGrid stroke="#ffffff" />
                 <XAxis
