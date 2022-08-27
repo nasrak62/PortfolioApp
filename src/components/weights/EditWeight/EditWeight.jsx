@@ -1,13 +1,12 @@
-import ShowWhen from 'components/utils/ShowWhen';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import ChangeWeight from '../ChangeWeight/ChangeWeight';
 import { formatDate } from 'utils/date';
 import { update } from './utils/update';
 import { getWeight } from './utils/get';
+import { isEmpty } from 'utils/lodash';
 
 const EditWeight = () => {
-  const [error, setError] = useState(false);
   const [weight, setWeight] = useState({
     date: {
       value: formatDate(null),
@@ -16,52 +15,19 @@ const EditWeight = () => {
     pounds: { value: 0, validation: 'numeric' },
   });
 
-  const [DBWeight, setDBWeight] = useState(null);
+  const updateWeight = useCallback(async (weight) => {
+    const result = await getWeight(weight.date.value);
 
-  const updateWeight = useCallback(
-    async (weight) => {
-      return await update(weight, DBWeight?._id);
-    },
-    [DBWeight],
-  );
+    if (isEmpty(result?.created)) {
+      result.errors = "This date doesn't have weight, please create it first";
 
-  const weightInfo = useCallback(async () => {
-    setDBWeight(null);
-    const result = await getWeight(weight?.date?.value);
-
-    if (result?.errors) {
-      return setError(result?.errors);
+      return result;
     }
 
-    const current_weight = result?.created[0];
+    const dbWeight = result?.created?.[0];
 
-    if (!current_weight?._id) {
-      return;
-    }
-
-    setDBWeight(current_weight);
-
-    return setWeight({
-      date: {
-        value: current_weight?.date,
-        validation: 'date',
-      },
-      pounds: { value: current_weight?.pounds, validation: 'numeric' },
-    });
-  }, [weight.date.value]);
-
-  useEffect(() => {
-    weightInfo();
-  }, [weight.date.value, weightInfo]);
-
-  if (!DBWeight) {
-    return (
-      <div>
-        <h1>please wait...</h1>
-        <ShowWhen condition={error}>{error}</ShowWhen>
-      </div>
-    );
-  }
+    return await update(weight, dbWeight?._id);
+  }, []);
 
   return (
     <ChangeWeight

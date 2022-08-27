@@ -24,6 +24,8 @@ const ChangeWeight = ({
 
     const result = await weightChangeClick(weight);
 
+    console.log({ result });
+
     if (result?.errors) {
       return setErrors(result?.errors);
     }
@@ -45,8 +47,7 @@ const ChangeWeight = ({
         return (
           <div
             key={`new-weight-${attr}-div`}
-            className={classes.inputContainer}
-          >
+            className={classes.inputContainer}>
             <p className={classes.label}>{attr}</p>
             <Input
               classes={classes}
