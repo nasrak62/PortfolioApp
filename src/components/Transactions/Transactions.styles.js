@@ -61,7 +61,7 @@ export const StyledTransactions = styled('div')(({ theme }) => ({
   },
 
   [`& .${classes.header}`]: {
-    marginBottom: '1%',
+    margin: '1% 0%',
   },
 
   [`& .${classes.headerContainer}`]: {
@@ -123,7 +123,7 @@ export const StyledTransactions = styled('div')(({ theme }) => ({
     color: '#ffffff',
     border: '1px solid #ffffff',
     borderRadius: 5,
-    width: '20%',
+    width: '33%',
     textAlign: 'center',
 
     [`${theme.breakpoints.down('xl')}`]: {
@@ -147,12 +147,13 @@ export const StyledTransactions = styled('div')(({ theme }) => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     marginBottom: '1%',
     marginTop: '1%',
 
     [`${theme.breakpoints.down('xl')}`]: {
+      justifyContent: 'space-between',
       flexDirection: 'column',
       gap: '4%',
       marginTop: '4%',
@@ -165,6 +166,12 @@ export const StyledTransactions = styled('div')(({ theme }) => ({
   },
 
   [`& .${classes.infoSubContainer}`]: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: '4%',
+    width: '50%',
+
     [`${theme.breakpoints.down('xl')}`]: {
       display: 'flex',
       flexDirection: 'row',

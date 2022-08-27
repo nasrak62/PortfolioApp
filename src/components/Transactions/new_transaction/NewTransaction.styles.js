@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'material-ui';
 
 const prefix = 'NewTransaction';
 
@@ -14,7 +14,7 @@ export const classes = {
   errors: `${prefix}-errors`,
 };
 
-export const StyledNewTransactions = styled('div')({
+export const StyledNewTransactions = styled('div')(({ theme }) => ({
   [`&.${classes.container}`]: {
     display: 'flex',
     flexDirection: 'column',
@@ -35,6 +35,10 @@ export const StyledNewTransactions = styled('div')({
     marginLeft: 'auto',
     marginRight: 'auto',
     justifyContent: 'space-between',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      width: '90%',
+    },
   },
 
   [`& .${classes.item}`]: {
@@ -73,7 +77,7 @@ export const StyledNewTransactions = styled('div')({
 
   [`& .${classes.title}`]: {
     color: '#ffffff',
-    marginTop: '1%',
+    marginTop: '4%',
   },
 
   [`& .${classes.select}`]: {
@@ -100,4 +104,4 @@ export const StyledNewTransactions = styled('div')({
     fontSize: 20,
     color: 'red',
   },
-});
+}));

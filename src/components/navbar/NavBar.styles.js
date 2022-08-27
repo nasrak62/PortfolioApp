@@ -18,10 +18,6 @@ export const StyledNavBar = styled(AppBar, {
     backgroundColor: '#001e32',
     display: 'flex',
     flexDirection: 'row',
-    paddingTop: '1%',
-    paddingBottom: '2%',
-    paddingLeft: '1%',
-    paddingRight: '1%',
     justifyContent: 'space-between',
     height: '4%',
     width: cssOpenMenu ? '100%' : 'fit-content',
@@ -34,8 +30,12 @@ export const StyledNavBar = styled(AppBar, {
       height: 'fit-content',
       width: 'fit-content',
       zIndex: 1,
-      padding: cssOpenMenu ? '3% 4%' : 0,
+      padding: cssOpenMenu ? '1% 1%' : 0,
       borderBottom: cssOpenMenu ? '1px solid white' : 'none',
+    },
+
+    [`${theme.breakpoints.down('sm')}`]: {
+      padding: cssOpenMenu ? '3% 4%' : 0,
     },
   },
 
@@ -55,7 +55,8 @@ export const StyledNavBar = styled(AppBar, {
     flexDirection: 'row',
     columnGap: '8%',
     width: '50%',
-    margin: '1%',
+    margin: 0,
+    padding: '1%',
 
     [`${theme.breakpoints.down('xl')}`]: {
       flexDirection: 'column',
@@ -67,6 +68,8 @@ export const StyledNavBar = styled(AppBar, {
 
   [`& .${classes.logo}`]: {
     width: '100%',
-    maxWidth: 50,
+    maxWidth: 40,
+    padding: 0,
+    margin: 0,
   },
 }));
