@@ -4,22 +4,19 @@ import { switchState } from 'Threejs/state';
 
 export const addAnimation = async (player) => {
   player.mixer = new THREE.AnimationMixer(player.model);
-  console.log(player.objectModel);
-  const clip = player.objectModel.animations[1];
-  const action = player.mixer.clipAction(clip);
+  console.log(player.objectModel.animations);
+  player.objectModel.animations.forEach((animation) => {
+    if (animation.name.includes('-')) {
+      const type = animation.name.split('-')[1];
+      const clip = animation;
+      const action = player.mixer.clipAction(clip);
 
-  player.animations['idle'] = {
-    clip: clip,
-    action: action,
-  };
-
-  const clip2 = player.objectModel.animations[0];
-  const action2 = player.mixer.clipAction(clip2);
-
-  player.animations['walk'] = {
-    clip: clip2,
-    action: action2,
-  };
+      player.animations[type] = {
+        clip: clip,
+        action: action,
+      };
+    }
+  });
 
   switchState('idle', player);
 

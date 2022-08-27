@@ -26,7 +26,7 @@ const handleMovement = (delta, player) => {
   const acc = acceleration.clone();
 
   if (player.keys.shift) {
-    acc.multiplyScalar(2.0);
+    acc.multiplyScalar(20.0);
   }
 
   if (player.keys.forward) {
@@ -99,6 +99,10 @@ const updateCamera = (delta, player, world) => {
 const updateMixer = (delta, player) => {
   if (player.currentState.name === 'walk') {
     return player.mixer.update(delta * 1.2);
+  }
+
+  if (player.currentState.name === 'run') {
+    return player.mixer.update(delta * 1.5);
   }
 
   player.mixer.update(delta);

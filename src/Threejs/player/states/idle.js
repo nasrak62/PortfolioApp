@@ -35,7 +35,7 @@ const update = (delta, player) => {
   }
 
   if (player.keys.space) {
-    console.log('jump');
+    switchState('jumpPrepare', player);
   }
 
   switchState('idle', player);

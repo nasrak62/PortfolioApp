@@ -6,7 +6,6 @@ import THREE from 'Threejs/three';
 // import Remy from '../../assets/Man/MyModel1.glb';
 import Remy from '../../assets/Man/Base1.glb';
 import getInput from './event_handlers';
-import { animationObject } from './animationObject';
 import { playerStates } from './states/stateObject';
 
 const mapKeysToPlayer = () => ({
@@ -23,7 +22,6 @@ const addPlayer = async (scene, mixers) => {
   player.keys = mapKeysToPlayer();
   player.states = { ...playerStates };
   player.animations = { idle: { action: null, clip: null } };
-  player.animationObject = { ...animationObject };
   player.mixers = mixers;
 
   player.cameraAttrs = {
