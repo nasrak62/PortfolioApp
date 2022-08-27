@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { classObj } from 'utils/styles/breakpoints';
+import { styled } from 'material-ui';
 
 const prefix = 'ChangeWeight';
 
@@ -18,7 +18,7 @@ export const classes = classObj(
   'label',
 );
 
-export const StyledChangeWeight = styled('div')({
+export const StyledChangeWeight = styled('div')(({ theme }) => ({
   [`&.${classes.container}`]: {
     width: '100%',
     height: '100%',
@@ -40,6 +40,11 @@ export const StyledChangeWeight = styled('div')({
   [`& .${classes.title}`]: {
     margin: '2% 0',
     color: '#ffffff',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      margin: '15% 2%',
+      fontSize: 28,
+    },
   },
 
   [`& .${classes.label}`]: {
@@ -70,6 +75,10 @@ export const StyledChangeWeight = styled('div')({
     justifyContent: 'space-evenly',
     width: '50%',
     marginTop: '2%',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      width: '100%',
+    },
   },
 
   [`& .${classes.inputContainer}`]: {
@@ -77,10 +86,15 @@ export const StyledChangeWeight = styled('div')({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: '50%',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      width: '95%',
+      margin: '2% 4%',
+    },
   },
 
   [`& .${classes.innerInput}`]: {
     textAlign: 'center',
     width: '75%',
   },
-});
+}));

@@ -1,11 +1,15 @@
-const prefix = 'NavBar';
 import { AppBar, styled } from 'material-ui';
+import { classObj } from 'utils/styles/breakpoints';
 
-export const classes = {
-  navContainer: `${prefix}-navContainer`,
-  container: `${prefix}-container`,
-  link: `${prefix}-link`,
-};
+const prefix = 'NavBar';
+
+export const classes = classObj(
+  prefix,
+  'navContainer',
+  'container',
+  'link',
+  'logo',
+);
 
 export const StyledNavBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'cssOpenMenu',
@@ -30,7 +34,8 @@ export const StyledNavBar = styled(AppBar, {
       height: 'fit-content',
       width: 'fit-content',
       zIndex: 1,
-      padding: cssOpenMenu ? '3% 2%' : '1%',
+      padding: cssOpenMenu ? '3% 4%' : 0,
+      borderBottom: cssOpenMenu ? '1px solid white' : 'none',
     },
   },
 
@@ -40,8 +45,8 @@ export const StyledNavBar = styled(AppBar, {
     width: 'fit-content',
 
     [`${theme.breakpoints.down('xl')}`]: {
-      margin: '2%',
-      padding: '2%',
+      margin: cssOpenMenu ? '2%' : 0,
+      padding: cssOpenMenu ? '2%' : 0,
     },
   },
 
@@ -50,6 +55,7 @@ export const StyledNavBar = styled(AppBar, {
     flexDirection: 'row',
     columnGap: '8%',
     width: '50%',
+    margin: '1%',
 
     [`${theme.breakpoints.down('xl')}`]: {
       flexDirection: 'column',
@@ -57,5 +63,10 @@ export const StyledNavBar = styled(AppBar, {
       height: 'fit-content',
       width: 'fit-content',
     },
+  },
+
+  [`& .${classes.logo}`]: {
+    width: '100%',
+    maxWidth: 50,
   },
 }));

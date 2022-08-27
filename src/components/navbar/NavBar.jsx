@@ -7,6 +7,7 @@ import { StyledNavBar, classes } from './NavBar.styles';
 import NavDropdown from './NavDropdown';
 import ShowWhen from 'components/utils/ShowWhen';
 import MotionLink from 'components/utils/MotionLink';
+import Logo from 'assets/Pictures/allmight.jpg';
 
 const NavBar = observer(() => {
   const store = useStore();
@@ -48,7 +49,7 @@ const NavBar = observer(() => {
   return (
     <StyledNavBar className={classes.navContainer} cssOpenMenu={openMenu}>
       <p className={classes.link} onClick={handleLogoClick}>
-        Logo
+        <img className={classes.logo} src={Logo} alt="Logo" />
       </p>
       <ShowWhen condition={openMenu}>
         <div className={classes.container}>

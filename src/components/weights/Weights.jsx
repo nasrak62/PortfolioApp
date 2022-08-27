@@ -22,21 +22,25 @@ const Weights = () => {
   return (
     <StyledWeights
       className={classes.container}
-      height={windowSize?.height * 0.8 || 1000}
-    >
+      height={windowSize?.height * 0.8 || 1000}>
       <div className={classes.subContainer}>
         <div className={classes.headerContainer}>
           <h1 className={classes.header}>Weights</h1>
         </div>
         <div className={classes.linkContainer}>
           <Link className={classes.link} to="/weights/new">
-            <Button variant="contained">Create New Weight</Button>
+            <Button variant="contained" className={classes.button}>
+              Create New Weight
+            </Button>
           </Link>
           <Link className={classes.link} to="/weights/edit">
-            <Button variant="contained">Update Weight</Button>
+            <Button variant="contained" className={classes.button}>
+              Update Weight
+            </Button>
           </Link>
           <div className={classes.link}>
             <FormControlLabel
+              className={classes.button}
               control={
                 <Checkbox
                   checked={showKG}

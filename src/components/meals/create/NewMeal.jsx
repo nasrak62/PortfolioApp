@@ -55,7 +55,8 @@ const NewMeal = () => {
 
   const handleClick = useCallback(async () => {
     const body = meal;
-    const result = await create(body, '/meals', 'meal');
+
+    await create(body, '/meals', 'meal');
   }, [meal]);
 
   const removeFromSearch = useCallback((item, setData) => {

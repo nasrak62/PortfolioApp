@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'material-ui';
 import { classObj } from 'utils/styles/breakpoints';
 
 const prefix = 'Weights';
@@ -17,14 +17,20 @@ export const classes = classObj(
   'subContainer',
   'chartInner',
   'xAxis',
+  'button',
 );
 
-export const StyledWeights = styled('div')(({ height }) => ({
+export const StyledWeights = styled('div')(({ theme, height }) => ({
   [`&.${classes.container}`]: {
     width: '100%',
     height: '100%',
     color: '#ffffff',
     backgroundColor: 'rgba(0,2,34)',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      marginBottom: '4%',
+      paddingBottom: '4%',
+    },
   },
 
   [`& .${classes.subContainer}`]: {
@@ -54,6 +60,13 @@ export const StyledWeights = styled('div')(({ height }) => ({
     flexDirection: 'row',
     justifyContent: 'center',
     gap: '2%',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      flexDirection: 'column',
+      gap: '2%',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
+    },
   },
 
   [`& .${classes.link}`]: {
@@ -66,6 +79,11 @@ export const StyledWeights = styled('div')(({ height }) => ({
     // color: '#000000',
     // backgroundColor: '#ffffff',
     // boxShadow: '1px 1px 5px 2px #302c2c',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      marginTop: '2%',
+      width: '100%',
+    },
   },
 
   [`& .${classes.chartsContainer}`]: {
@@ -85,6 +103,11 @@ export const StyledWeights = styled('div')(({ height }) => ({
     justifyContent: 'center',
     textAlign: 'center',
     alignItems: 'center',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      marginBottom: '10%',
+      paddingBottom: '10%',
+    },
   },
 
   [`& ::-webkit-scrollbar`]: {
@@ -120,5 +143,13 @@ export const StyledWeights = styled('div')(({ height }) => ({
 
   [`& .${classes.xAxis}`]: {
     color: '#ffffff',
+  },
+
+  [`& .${classes.button}`]: {
+    [`${theme.breakpoints.down('xl')}`]: {
+      width: '80%',
+      minWidth: 200,
+      margin: 'auto',
+    },
   },
 }));
