@@ -1,69 +1,83 @@
 import { updateState } from 'Threejs/state';
 import THREE from 'Threejs/three';
+import { handleFly } from './controller_handlers/fly';
+import { handleFlyMove } from './controller_handlers/fly_move';
+import { handleJumpAir } from './controller_handlers/jump_air';
+import { handleWalk } from './controller_handlers/walk';
+
+const splitActions = (delta, player, controllerAttrs) => {
+  const currentState = player.currentState?.name;
+  console.log(currentState);
+
+  switch (currentState) {
+    case 'fly':
+      return handleFly(delta, player, controllerAttrs);
+    case 'flyMove':
+      return handleFlyMove(delta, player, controllerAttrs);
+    case 'jumpAir':
+      return handleJumpAir(delta, player, controllerAttrs);
+
+    default:
+      return handleWalk(delta, player, controllerAttrs);
+  }
+};
 
 const handleMovement = (delta, player) => {
-  const decceleration = new THREE.Vector3(-0.0005, -0.0001, -5.0);
-  const acceleration = new THREE.Vector3(1, 0.25, 50.0);
-  const velocity = new THREE.Vector3(0, 0, 0);
+  const controllerAttrs = {
+    deceleration: new THREE.Vector3(-0.0005, -0.0001, -5.0),
+    acceleration: new THREE.Vector3(1, 0.25, 50.0),
+    velocity: new THREE.Vector3(0, 0, 0),
+  };
 
-  const frameDecceleration = new THREE.Vector3(
-    velocity.x * decceleration.x,
-    velocity.y * decceleration.y,
-    velocity.z * decceleration.z,
+  const frameDeceleration = new THREE.Vector3(
+    controllerAttrs.velocity.x,
+    controllerAttrs.velocity.y,
+    controllerAttrs.velocity.z,
   );
 
-  frameDecceleration.multiplyScalar(delta);
-  frameDecceleration.z =
-    Math.sign(frameDecceleration.z) *
-    Math.min(Math.abs(frameDecceleration.z), Math.abs(velocity.z));
+  frameDeceleration.multiplyScalar(delta);
+  frameDeceleration.z =
+    Math.sign(frameDeceleration.z) *
+    Math.min(
+      Math.abs(frameDeceleration.z),
+      Math.abs(controllerAttrs.velocity.z),
+    );
 
-  velocity.add(frameDecceleration);
+  controllerAttrs.velocity.add(frameDeceleration);
 
-  const _Q = new THREE.Quaternion();
-  const _A = new THREE.Vector3();
-  const _R = player.model.quaternion.clone();
+  controllerAttrs._Q = new THREE.Quaternion();
+  controllerAttrs._A = new THREE.Vector3();
+  controllerAttrs._R = player.model.quaternion.clone();
 
-  const acc = acceleration.clone();
+  controllerAttrs.acc = controllerAttrs.acceleration.clone();
 
   if (player.keys.shift) {
-    acc.multiplyScalar(20.0);
+    controllerAttrs.acc.multiplyScalar(20.0);
   }
 
-  if (player.keys.forward) {
-    velocity.z += acc.z * delta * 10;
-  }
+  splitActions(delta, player, controllerAttrs);
 
-  if (player.keys.backward) {
-    velocity.z -= acc.z * delta * 10;
-  }
-
-  if (player.keys.left) {
-    _A.set(0, 1, 0);
-    _Q.setFromAxisAngle(_A, 4.0 * Math.PI * delta * acceleration.y);
-    _R.multiply(_Q);
-  }
-
-  if (player.keys.right) {
-    _A.set(0, 1, 0);
-    _Q.setFromAxisAngle(_A, 4.0 * -Math.PI * delta * acceleration.y);
-    _R.multiply(_Q);
-  }
-
-  player.model.quaternion.copy(_R);
+  player.model.quaternion.copy(controllerAttrs._R);
 
   const forward = new THREE.Vector3(0, 0, 1);
   forward.applyQuaternion(player.model.quaternion);
   forward.normalize();
 
+  const up = new THREE.Vector3(0, 1, 0);
+  up.applyQuaternion(player.model.quaternion);
+  up.normalize();
+
   const sideways = new THREE.Vector3(1, 0, 0);
   sideways.applyQuaternion(player.model.quaternion);
   sideways.normalize();
 
-  sideways.multiplyScalar(velocity.x * delta);
-  forward.multiplyScalar(velocity.z * delta);
+  sideways.multiplyScalar(controllerAttrs.velocity.x * delta);
+  forward.multiplyScalar(controllerAttrs.velocity.z * delta);
+  up.multiplyScalar(controllerAttrs.velocity.y * delta);
 
   player.model.position.add(forward);
   player.model.position.add(sideways);
+  player.model.position.add(up);
 };
 
 const calculateIdealOffset = (quaternion, position, initialVector) => {
@@ -76,11 +90,15 @@ const calculateIdealOffset = (quaternion, position, initialVector) => {
 };
 
 const updateCamera = (delta, player, world) => {
-  const initialOffset = new THREE.Vector3(-15, 20, -30);
+  let initialOffset = new THREE.Vector3(-0, 40, -50);
   const initialLookAt = new THREE.Vector3(0, 10, 50);
 
   const quaternion = player?.model?.quaternion;
   const position = player.model.position;
+
+  if (player?.currentState?.name === 'fly') {
+    initialOffset.add(new THREE.Vector3(0, 20, 0));
+  }
 
   const idealOffset = calculateIdealOffset(quaternion, position, initialOffset);
   const idealLookAt = calculateIdealOffset(quaternion, position, initialLookAt);
@@ -109,7 +127,12 @@ const updateMixer = (delta, player) => {
 };
 
 export const updateControls = (delta, player, world) => {
-  if (!player.model || !player.currentState || !player.mixer) {
+  if (
+    !player.model ||
+    !player.currentState ||
+    !player.mixer ||
+    !player.movementAttrs
+  ) {
     return;
   }
 

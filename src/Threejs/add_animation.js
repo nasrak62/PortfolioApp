@@ -20,6 +20,8 @@ export const addAnimation = async (player) => {
 
   switchState('idle', player);
 
+  return;
+
   // const keys = Object.keys(player.animationObject);
   // const promises = [];
 

@@ -32,15 +32,15 @@ const handleKeys = (e, player, value) => {
   }
 };
 
+const handleClick = (e, player, value) => {
+  player.keys.leftClick = true;
+};
+
 const getInput = (player) => {
   window.addEventListener('keydown', (e) => handleKeys(e, player, true), false);
   window.addEventListener('keyup', (e) => handleKeys(e, player, false), false);
 
-  // window.addEventListener(
-  //   'click',
-  //   () => handleClick(player.actions['rightPunch'], player.actions['idle']),
-  //   false,
-  // );
+  window.addEventListener('click', (e) => handleClick(e, player, true), false);
 };
 
 export default getInput;

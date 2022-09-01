@@ -1,11 +1,8 @@
 import addModel from 'Threejs/add_model';
-// import { addAnimationWithManager } from 'Threejs/add_animation';
 import THREE from 'Threejs/three';
-
-// import Remy from '../../assets/Man/ybot.fbx';
-// import Remy from '../../assets/Man/MyModel1.glb';
-import Remy from '../../assets/Man/Base1.glb';
+import Remy from '../../assets/Man/Base3.glb';
 import getInput from './event_handlers';
+import { movementAttrs } from './states/movementAttrs';
 import { playerStates } from './states/stateObject';
 
 const mapKeysToPlayer = () => ({
@@ -15,6 +12,8 @@ const mapKeysToPlayer = () => ({
   forward: false,
   space: false,
   shift: false,
+  rightClick: false,
+  leftClick: false,
 });
 
 const addPlayer = async (scene, mixers) => {
@@ -32,6 +31,8 @@ const addPlayer = async (scene, mixers) => {
   getInput(player);
 
   await addModel(scene, Remy, player);
+
+  player.movementAttrs = movementAttrs(player);
 
   return player;
 };

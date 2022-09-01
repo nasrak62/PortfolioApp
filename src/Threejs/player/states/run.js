@@ -2,7 +2,7 @@ const { State, switchState } = require('Threejs/state');
 
 const exit = () => {};
 
-const enter = (prevState, animations) => {
+const enter = (prevState, animations, player) => {
   const currentAction = animations['run'].action;
 
   if (!prevState) {
@@ -31,6 +31,8 @@ const enter = (prevState, animations) => {
 const update = (delta, player) => {
   if ((player.keys.forward || player.keys.backward) && !player.keys.shift) {
     switchState('walk', player);
+
+    return;
   }
 
   if (player.keys.forward || player.keys.backward) {
@@ -38,6 +40,8 @@ const update = (delta, player) => {
   }
 
   switchState('idle', player);
+
+  return;
 };
 
 const runState = () => {

@@ -18,7 +18,7 @@ export const switchState = (stateName, player) => {
 
   const state = player.states[stateName];
   player.currentState = state;
-  state.enter(prevState, player.animations);
+  state.enter(prevState, player.animations, player);
 };
 
 export const updateState = (delta, player) => {

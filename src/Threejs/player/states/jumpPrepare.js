@@ -2,7 +2,7 @@ const { State, switchState } = require('Threejs/state');
 
 const exit = () => {};
 
-const enter = (prevState, animations) => {
+const enter = (prevState, animations, player) => {
   const currentAction = animations['jumpPrepare'].action;
 
   if (!prevState) {
@@ -21,11 +21,22 @@ const enter = (prevState, animations) => {
 };
 
 const update = (delta, player) => {
-  if (player.keys.space) {
+  if (player.keys.space && !player.keys.backward) {
     return;
   }
 
-  switchState('idle', player);
+  if (player.keys.space && player.keys.backward) {
+    switchState('idle', player);
+
+    return;
+  }
+
+  player.movementAttrs.jumpPeak = false;
+  player.movementAttrs.finishJump = false;
+
+  switchState('jumpAir', player);
+
+  return;
 };
 
 const jumpPrepareState = () => {
