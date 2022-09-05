@@ -1,18 +1,21 @@
-import styled from 'styled-components';
+import { styled } from 'material-ui';
+import { classObj } from 'utils/styles/breakpoints';
 
 const prefix = 'Register';
 
-export const classes = {
-  container: `${prefix}-container`,
-};
+export const classes = classObj(prefix, 'container');
 
-export const StyledRegister = styled('div')({
+export const StyledRegister = styled('div')(({ theme }) => ({
   [`&.${classes.container}`]: {
     width: '100%',
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    backgroundImage: `linear-gradient(#001e32,#802047)`,
+    backgroundColor: 'rgba(0,2,34)',
+
+    [`${theme.breakpoints.down('sm')}`]: {
+      paddingTop: '50%',
+    },
   },
-});
+}));

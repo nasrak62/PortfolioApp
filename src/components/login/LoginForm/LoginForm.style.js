@@ -1,19 +1,23 @@
-import styled from 'styled-components';
+import { styled } from 'material-ui';
+import { classObj } from 'utils/styles/breakpoints';
 
 const prefix = 'LoginForm';
 
-export const classes = {
-  subContainer: `${prefix}-subContainer`,
-  inputContainer: `${prefix}-inputContainer`,
-  formContainer: `${prefix}-formContainer`,
-  title: `${prefix}-title`,
-  errors: `${prefix}-errors`,
-  buttonContainer: `${prefix}-buttonContainer`,
-  button: `${prefix}-button`,
-  label: `${prefix}-label`,
-  input: `${prefix}-input`,
-};
-export const StyledLoginForm = styled('div')({
+export const classes = classObj(
+  prefix,
+  'container',
+  'subContainer',
+  'inputContainer',
+  'formContainer',
+  'title',
+  'errors',
+  'buttonContainer',
+  'button',
+  'label',
+  'input',
+);
+
+export const StyledLoginForm = styled('div')(({ theme }) => ({
   [`&.${classes.subContainer}`]: {
     display: 'flex',
     flexDirection: 'column',
@@ -22,19 +26,30 @@ export const StyledLoginForm = styled('div')({
     alignItems: 'center',
     textAlign: 'center',
     color: '#ffffff',
+
+    [`${theme.breakpoints.down('sm')}`]: {
+      width: '100%',
+    },
   },
 
   [`& .${classes.inputContainer}`]: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginBottom: '3%',
+    gap: '10%',
+
+    [`${theme.breakpoints.down('sm')}`]: {},
   },
 
   [`& .${classes.formContainer}`]: {
     width: '80%',
     margin: 'auto',
+
+    [`${theme.breakpoints.down('sm')}`]: {
+      width: '95%',
+    },
   },
 
   [`& .${classes.title}`]: {
@@ -77,6 +92,8 @@ export const StyledLoginForm = styled('div')({
 
   [`& .${classes.label}`]: {
     fontSize: 16,
+    width: '20%',
+    textAlign: 'left',
   },
 
   [`& .${classes.input}`]: {
@@ -86,4 +103,4 @@ export const StyledLoginForm = styled('div')({
     backgroundColor: 'rgba(120,20,80,0.5)',
     fontSize: 16,
   },
-});
+}));
