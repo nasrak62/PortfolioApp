@@ -7,7 +7,6 @@ import { handleWalk } from './controller_handlers/walk';
 
 const splitActions = (delta, player, controllerAttrs) => {
   const currentState = player.currentState?.name;
-  console.log(currentState);
 
   switch (currentState) {
     case 'fly':
@@ -115,24 +114,28 @@ const updateCamera = (delta, player, world) => {
 };
 
 const updateMixer = (delta, player) => {
-  if (player.currentState.name === 'walk') {
-    return player.mixer.update(delta * 1.2);
+  const animationName = player?.currentState?.name;
+  const animationTime = delta * player?.times?.animationsTime?.[animationName];
+
+  if (!animationTime) {
+    return player.mixer.update(delta);
   }
 
-  if (player.currentState.name === 'run') {
-    return player.mixer.update(delta * 1.5);
+  if (
+    player.keys.shift &&
+    (animationName === 'punchMidR' || animationName === 'punchMidL')
+  ) {
+    return player.mixer.update(animationTime * 5);
   }
 
-  player.mixer.update(delta);
+  return player.mixer.update(animationTime);
 };
 
 export const updateControls = (delta, player, world) => {
-  if (
-    !player.model ||
-    !player.currentState ||
-    !player.mixer ||
-    !player.movementAttrs
-  ) {
+  const ready =
+    player.model && player.currentState && player.mixer && player.movementAttrs;
+
+  if (!ready) {
     return;
   }
 

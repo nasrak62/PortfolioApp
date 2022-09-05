@@ -1,3 +1,5 @@
+import { getPunch } from './attacks/utils';
+
 const { State, switchState } = require('Threejs/state');
 
 const exit = () => {};
@@ -29,7 +31,7 @@ const enter = (prevState, animations, player) => {
 
 const update = (delta, player) => {
   if (player.keys.leftClick) {
-    switchState('enterPunch', player);
+    switchState(getPunch(), player);
 
     return;
   }

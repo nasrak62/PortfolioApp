@@ -17,23 +17,26 @@ const enter = (prevState, animations, player) => {
   currentAction.setEffectiveTimeScale(1.0);
   currentAction.setEffectiveWeight(1.0);
   currentAction.crossFadeFrom(prevAction, 0.5, true);
+  currentAction.clampWhenFinished = true;
   currentAction.repetitions = 0;
   currentAction.play();
 };
 
 const update = (delta, player) => {
-  const animationTime = player.animations[player.currentState.name].action.time;
-  const animationDuration =
-    player.animations[player.currentState.name].action._clip.duration;
+  // const animationTime = player.animations[player.currentState.name].action.time;
+  // const animationDuration =
+  //   player.animations[player.currentState.name].action._clip.duration;
 
-  const stopClick = animationDuration <= animationTime;
+  // const stopClick = animationDuration <= animationTime;
 
-  const isRunning =
-    player.animations[player.currentState.name].action.isRunning();
+  // const isRunning =
+  //   player.animations[player.currentState.name].action.isRunning();
 
-  if (!isRunning) {
-    switchState('punchMidR', player);
-  }
+  // console.log({ animationTime, animationDuration });
+
+  // if (!isRunning && stopClick) {
+  //   switchState('punchMidR', player);
+  // }
 
   return;
 };

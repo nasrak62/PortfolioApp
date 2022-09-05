@@ -1,13 +1,28 @@
-// const handleClick = (actionPunch, idleAction) => {
-//   actionPunch.reset().play();
+import { switchState } from 'Threejs/state';
 
-//   idleAction
-//     .reset()
-//     .setEffectiveTimeScale(1)
-//     .setEffectiveWeight(1)
-//     .fadeIn(0.7)
-//     .play();
-// };
+export const handleMixer = (e, player) => {
+  const currentAction = e?.action;
+
+  if (!currentAction) {
+    return;
+  }
+
+  const name = currentAction?._clip?.name?.split('-')?.[1];
+
+  if (!name) {
+    return;
+  }
+
+  console.log({ name, leftClick: player.keys.leftClick });
+
+  if (name === 'punchMidR') {
+    player.keys.leftClick = false;
+  }
+
+  if (name === 'punchMidL') {
+    player.keys.leftClick = false;
+  }
+};
 
 const handleKeys = (e, player, value) => {
   switch (e.keyCode) {
@@ -32,15 +47,17 @@ const handleKeys = (e, player, value) => {
   }
 };
 
-const handleClick = (e, player, value) => {
+const handleClick = (e, player) => {
   player.keys.leftClick = true;
+  player.times.attackTime = performance.now();
+  console.log(player);
 };
 
 const getInput = (player) => {
   window.addEventListener('keydown', (e) => handleKeys(e, player, true), false);
   window.addEventListener('keyup', (e) => handleKeys(e, player, false), false);
 
-  window.addEventListener('click', (e) => handleClick(e, player, true), false);
+  window.addEventListener('click', (e) => handleClick(e, player), false);
 };
 
 export default getInput;

@@ -18,23 +18,24 @@ const enter = (prevState, animations, player) => {
   currentAction.setEffectiveWeight(1.0);
   currentAction.crossFadeFrom(prevAction, 0.5, true);
   currentAction.repetitions = 0;
+  currentAction.clampWhenFinished = true;
   console.log(currentAction);
   currentAction.play();
 };
 
 const update = (delta, player) => {
-  const animationTime = player.animations[player.currentState.name].action.time;
-  const animationDuration =
-    player.animations[player.currentState.name].action._clip.duration;
+  // const animationTime = player.animations[player.currentState.name].action.time;
+  // const animationDuration =
+  //   player.animations[player.currentState.name].action._clip.duration;
 
-  const stopClick = animationDuration <= animationTime;
+  // const stopClick = animationDuration <= animationTime;
 
-  const isRunning =
-    player.animations[player.currentState.name].action.isRunning();
+  // const isRunning =
+  //   player.animations[player.currentState.name].action.isRunning();
 
-  if (!isRunning) {
-    switchState('idle', player);
-  }
+  // if (!isRunning && stopClick) {
+  //   switchState('idle', player);
+  // }
 
   return;
 };

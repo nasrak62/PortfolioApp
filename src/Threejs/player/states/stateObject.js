@@ -2,6 +2,7 @@ import enterPunchState from './attacks/enterPunch';
 import exitPunchState from './attacks/exitPunch';
 import punchMidLState from './attacks/punchMidL';
 import punchMidRState from './attacks/punchMidR';
+import readyPunchState from './attacks/readyPunch';
 import flyState from './fly';
 import flyMoveState from './flyMove';
 import idleState from './idle';
@@ -22,4 +23,5 @@ export const playerStates = {
   punchMidL: punchMidLState(),
   exitPunch: exitPunchState(),
   enterPunch: enterPunchState(),
+  readyPunch: readyPunchState(),
 };
