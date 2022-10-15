@@ -11,7 +11,7 @@ const attrs = ['name', 'amount', 'proteins', 'carbs', 'fats'];
 
 const Foods = () => {
   const [foods, setFoods, error] = useFetchData('/foods', 'foods');
-
+  console.log({})
   return (
     <div>
       <div>

@@ -11,8 +11,7 @@ const NavDropdown = ({ handleClose, anchorEl, open, classes, variants }) => {
       onClose={handleClose}
       MenuListProps={{
         'aria-labelledby': 'basic-button',
-      }}
-    >
+      }}>
       <MenuItem onClick={handleClose}>
         <MotionLink
           text="Game 1"
@@ -22,7 +21,24 @@ const NavDropdown = ({ handleClose, anchorEl, open, classes, variants }) => {
           classes={classes}
         />
       </MenuItem>
-      <MenuItem onClick={handleClose}>Game 2</MenuItem>
+      <MenuItem onClick={handleClose}>
+        <MotionLink
+          text="Categories Game"
+          url="/games/categories_game"
+          onClick={null}
+          variants={variants}
+          classes={classes}
+        />
+      </MenuItem>
+      <MenuItem onClick={handleClose}>
+        <MotionLink
+          text="Racing Car"
+          url="/games/racing_car"
+          onClick={null}
+          variants={variants}
+          classes={classes}
+        />
+      </MenuItem>
       <MenuItem onClick={handleClose}>Game 3</MenuItem>
     </Menu>
   );

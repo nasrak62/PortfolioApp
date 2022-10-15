@@ -35,11 +35,15 @@ export const StyledWeights = styled('div')(({ theme, height }) => ({
 
   [`& .${classes.subContainer}`]: {
     width: '100%',
-    padding: '1% 2%',
+    padding: '4% 2% 2% 2%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     textAlign: 'center',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      padding: '1% 2%',
+    },
   },
 
   [`& .${classes.headerContainer}`]: {
@@ -71,14 +75,6 @@ export const StyledWeights = styled('div')(({ theme, height }) => ({
 
   [`& .${classes.link}`]: {
     textDecoration: 'none',
-    // border: '1px solid #ffffff',
-    // borderRadius: 5,
-    // padding: '1%',
-    // paddingRight: '2%',
-    // paddingLeft: '2%',
-    // color: '#000000',
-    // backgroundColor: '#ffffff',
-    // boxShadow: '1px 1px 5px 2px #302c2c',
 
     [`${theme.breakpoints.down('xl')}`]: {
       marginTop: '2%',
@@ -94,6 +90,11 @@ export const StyledWeights = styled('div')(({ theme, height }) => ({
     overflowY: 'scroll',
     msOverflowStyle: 'none',
     scrollbarWidth: 'none',
+    paddingBottom: '2%',
+
+    [`${theme.breakpoints.down('xl')}`]: {
+      paddingBottom: 0,
+    },
   },
 
   [`& .${classes.chartContainer}`]: {

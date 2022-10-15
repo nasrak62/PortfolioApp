@@ -24,8 +24,6 @@ const ChangeWeight = ({
 
     const result = await weightChangeClick(weight);
 
-    console.log({ result });
-
     if (result?.errors) {
       return setErrors(result?.errors);
     }

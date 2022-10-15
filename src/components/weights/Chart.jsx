@@ -22,7 +22,10 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
 
   if (showKG) {
     data = data.map((weight) => {
-      return { ...weight, value: weight.value * 0.45 };
+      let value = weight?.value * 0.45;
+      value = parseFloat(value.toFixed(2));
+
+      return { ...weight, value };
     });
   }
 
@@ -49,6 +52,8 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
         maxData = 20;
 
         const minData = getMinWeight(dataSets[type]) / 2;
+        const average = getAverage(dataSets[type]);
+        const displayAverage = parseFloat(average.toFixed(2));
 
         return (
           <div
@@ -62,7 +67,7 @@ const Chart = ({ weights, windowSize, showKG, classes }) => {
 
             <div className={classes.chartTitleContainer}>
               <h2 className={classes.chartHeaderContainer}>
-                Average: {getAverage(dataSets[type]).toFixed(2)}
+                Average: {displayAverage}
               </h2>
             </div>
 

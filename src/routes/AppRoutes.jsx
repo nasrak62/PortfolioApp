@@ -65,6 +65,18 @@ const Game1 = loadable(() =>
   import(/* webpackChunkName: "Game1" */ 'components/games/game1/Game1'),
 );
 
+const CategoriesGame = loadable(() =>
+  import(
+    /* webpackChunkName: "CategoriesGame" */ 'components/games/categories_game/CategoriesGame'
+  ),
+);
+
+const RacingCar = loadable(() =>
+  import(
+    /* webpackChunkName: "RacingCar" */ 'components/games/racing_car/RacingCar'
+  ),
+);
+
 const AppRoutes = observer(({ store }) => {
   const loggedIn = store?.token && store?.loggedIn;
 
@@ -82,6 +94,12 @@ const AppRoutes = observer(({ store }) => {
         <Route exact path="/meals" element={<Meals />} />
         <Route exact path="/meals/new" element={<NewMeal />} />
         <Route exact path="/games/game1" element={<Game1 />} />
+        <Route
+          exact
+          path="/games/categories_game"
+          element={<CategoriesGame />}
+        />
+        <Route exact path="/games/racing_car" element={<RacingCar />} />
       </>
     );
   }, []);

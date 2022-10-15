@@ -19,7 +19,7 @@ export const StyledNavBar = styled(AppBar, {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: '4%',
+    height: '5%',
     width: cssOpenMenu ? '100%' : 'fit-content',
     borderBottom: '1px solid white',
     left: '0%',
@@ -44,6 +44,10 @@ export const StyledNavBar = styled(AppBar, {
     textDecoration: 'none',
     width: 'fit-content',
 
+    ':visited': {
+      textDecoration: 'none',
+    },
+
     [`${theme.breakpoints.down('xl')}`]: {
       margin: cssOpenMenu ? '2%' : 0,
       padding: cssOpenMenu ? '2%' : 0,
@@ -57,6 +61,7 @@ export const StyledNavBar = styled(AppBar, {
     width: '50%',
     margin: 0,
     padding: '1%',
+    alignItems: 'center',
 
     [`${theme.breakpoints.down('xl')}`]: {
       flexDirection: 'column',
