@@ -4,7 +4,7 @@ import { foodsFromMeal, handleEditLink, onDeleteMeal } from './utils';
 import FoodTable from 'components/utils/Table/Table';
 import { handleFoodRowChange } from 'components/foods/utils';
 
-const attrs = ['name', 'amount', 'proteins', 'carbs', 'fats'];
+const attrs = ['name', 'calories', 'amount', 'proteins', 'carbs', 'fats'];
 
 const Table = ({ data, setData, classes }) => {
   const deleteMeal = useCallback(
@@ -29,10 +29,9 @@ const Table = ({ data, setData, classes }) => {
         return (
           <div
             key={`meal-overview-${meal._id}`}
-            className={classes.tableMealContainer}
-          >
+            className={classes.tableMealContainer}>
             <div>
-              <p>{meal?.name}</p>
+              <h2>{meal?.name}</h2>
             </div>
 
             <div>

@@ -1,8 +1,10 @@
 import ByCondition from 'components/utils/ByCondition';
+import { Button } from 'material-ui';
 import React, { useCallback, useState } from 'react';
 import { create, read } from 'utils/crud';
 import FoodInputs from '../inputs/FoodInputs';
 import { initialFood } from '../utils';
+import { StyledNewFood, classes } from './NewFood.style';
 
 const NewFood = () => {
   const [food, setFood] = useState(initialFood());
@@ -51,8 +53,7 @@ const NewFood = () => {
   };
 
   return (
-    <>
-      <button onClick={scrape}>scrape</button>
+    <StyledNewFood className={classes.container}>
       <ByCondition
         condition={isScraped}
         ifTrue={
@@ -64,6 +65,7 @@ const NewFood = () => {
             setFood={setScrapedFood}
             error={error}
             created={created}
+            classes={classes}
           />
         }
         ifFalse={
@@ -75,10 +77,20 @@ const NewFood = () => {
             setFood={setFood}
             error={error}
             created={created}
+            classes={classes}
           />
         }
       />
-    </>
+
+      <div className={classes.scrapeContainer}>
+        <Button
+          variant="contained"
+          onClick={scrape}
+          className={classes.scrapeButton}>
+          Scrape
+        </Button>
+      </div>
+    </StyledNewFood>
   );
 };
 

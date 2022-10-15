@@ -4,6 +4,7 @@ import { isEmpty, capitalize } from 'utils/lodash';
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { getInputType } from 'utils/input';
+import { Button } from 'material-ui';
 
 const FoodInputs = ({
   onClick,
@@ -13,6 +14,7 @@ const FoodInputs = ({
   setFood,
   error,
   created,
+  classes,
 }) => {
   const inputs = useMemo(() => {
     const ATTRS = ['name', 'amount', 'calories', 'proteins', 'carbs', 'fats'];
@@ -22,11 +24,13 @@ const FoodInputs = ({
     }
 
     return (
-      <div>
+      <div className={classes.fieldInputsContainer}>
         {ATTRS.map((attr) => {
           return (
-            <div key={`${attr}-div-key`}>
-              <p>{capitalize(attr)}</p>
+            <div
+              key={`${attr}-div-key`}
+              className={classes.fieldInputContainer}>
+              <p className={classes.label}>{capitalize(attr)}</p>
               <Input
                 classes={null}
                 attr={attr}
@@ -45,30 +49,37 @@ const FoodInputs = ({
   }, [food, setFood]);
 
   return (
-    <div>
-      <div>
+    <div className={classes.inputsContainer}>
+      <div className={classes.titleContainer}>
         <h1>{title}</h1>
       </div>
 
       {inputs}
 
-      <div>
-        <button onClick={onClick}>{buttonText}</button>
-      </div>
+      <div className={classes.buttonsContainer}>
+        <Link to="/foods" className={classes.link}>
+          <Button variant="contained" className={classes.backButton}>
+            Back
+          </Button>
+        </Link>
 
-      <div>
-        <Link to="/foods">Back</Link>
+        <Button
+          variant="contained"
+          onClick={onClick}
+          className={classes.button}>
+          {buttonText}
+        </Button>
       </div>
 
       <ShowWhen condition={Boolean(error)}>
         <div>
-          <p>{error}</p>
+          <h4>{error}</h4>
         </div>
       </ShowWhen>
 
       <ShowWhen condition={Boolean(created)}>
         <div>
-          <p>Done</p>
+          <h4>Done</h4>
         </div>
       </ShowWhen>
     </div>

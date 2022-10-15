@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from 'material-ui';
 import { classObj } from 'utils/styles/breakpoints';
 
 const prefix = 'Meal';
@@ -20,13 +20,16 @@ export const classes = classObj(
   'buttonContainer',
   'optionsContainer',
   'tableMealContainer',
+  'link',
+  'titleContainer',
 );
 
-export const StyledMeal = styled('div')(() => ({
+export const StyledMeal = styled('div')(({ theme }) => ({
   [`&.${classes.container}`]: {
     width: '100%',
     height: '100%',
-    backgroundImage: `linear-gradient(#b3acac,#000000)`,
+    color: '#ffffff',
+    backgroundColor: 'rgba(0,2,34)',
     display: 'flex',
     flexDirection: 'column',
     margin: 'auto',
@@ -36,10 +39,7 @@ export const StyledMeal = styled('div')(() => ({
     overflowX: 'hidden',
   },
 
-  [`& .${classes.title}`]: {
-    width: '100%',
-    margin: '3% auto',
-  },
+  [`& .${classes.title}`]: {},
 
   [`& .${classes.searchContainer}`]: {
     display: 'flex',
@@ -111,7 +111,7 @@ export const StyledMeal = styled('div')(() => ({
   [`& .${classes.optionsContainer}`]: {
     width: '100%',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: '1%',
   },
 
@@ -131,5 +131,19 @@ export const StyledMeal = styled('div')(() => ({
     flexDirection: 'column',
     padding: '5% 0',
     gap: '20%',
+  },
+
+  [`& .${classes.link}`]: {
+    textDecoration: 'none',
+
+    [`${theme.breakpoints.down('xl')}`]: {},
+  },
+
+  [`& .${classes.titleContainer}`]: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    
+    [`${theme.breakpoints.down('xl')}`]: {},
   },
 }));

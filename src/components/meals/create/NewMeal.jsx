@@ -16,7 +16,7 @@ import { handleFoodRowChange } from 'components/foods/utils';
 
 import { StyledNewMeal, classes } from './NewMeal.style';
 
-const attrs = ['name', 'amount', 'proteins', 'carbs', 'fats'];
+const attrs = ['name', 'calories', 'amount', 'proteins', 'carbs', 'fats'];
 
 const NewMeal = () => {
   const [foodSearch, setFoodSearch] = useState('');
