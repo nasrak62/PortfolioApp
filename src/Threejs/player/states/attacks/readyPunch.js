@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { getPunch } from './utils';
 
 const { State, switchState } = require('Threejs/state');

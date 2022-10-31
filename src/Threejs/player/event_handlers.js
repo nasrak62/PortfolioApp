@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { switchState } from 'Threejs/state';
 
 export const handleMixer = (e, player) => {

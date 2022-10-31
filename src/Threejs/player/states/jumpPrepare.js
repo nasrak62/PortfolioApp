@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const { State, switchState } = require('Threejs/state');
 
 const exit = () => {};
