@@ -1,5 +1,5 @@
 import THREE from 'Threejs/three';
-import gsap from 'gsap';
+import { default as gsap } from 'gsap';
 import earthImage from './image/earth.jpg';
 import moonImage from './image/moon.jpg';
 import sunImage from './image/sun.jpg';
