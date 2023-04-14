@@ -12,6 +12,10 @@ const Meals = () => {
 
   const hasError = Boolean(error) && !isEmpty(error);
 
+  if (isEmpty(meals)) {
+    return <h1>No Data!</h1>;
+  }
+
   return (
     <StyledMeal className={classes.container}>
       <div className={classes.titleContainer}>

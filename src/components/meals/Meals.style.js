@@ -34,7 +34,7 @@ export const StyledMeal = styled('div')(({ theme }) => ({
     flexDirection: 'column',
     margin: 'auto',
     alignItems: 'center',
-    paddingBottom: '10%',
+    padding: '4% 0% 10% 0%',
     overflowY: 'scroll',
     overflowX: 'hidden',
   },
@@ -143,7 +143,7 @@ export const StyledMeal = styled('div')(({ theme }) => ({
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    
+
     [`${theme.breakpoints.down('xl')}`]: {},
   },
 }));

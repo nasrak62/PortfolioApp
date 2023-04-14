@@ -61,6 +61,10 @@ const NewMeal = loadable(() =>
   import(/* webpackChunkName: "NewMeal" */ 'components/meals/create/NewMeal'),
 );
 
+const EditMeal = loadable(() =>
+  import(/* webpackChunkName: "EditMeal" */ 'components/meals/edit/EditMeal'),
+);
+
 const Game1 = loadable(() =>
   import(/* webpackChunkName: "Game1" */ 'components/games/game1/Game1'),
 );
@@ -93,6 +97,7 @@ const AppRoutes = observer(({ store }) => {
         <Route exact path="/foods/edit/:id" element={<EditFood />} />
         <Route exact path="/meals" element={<Meals />} />
         <Route exact path="/meals/new" element={<NewMeal />} />
+        <Route exact path="/meals/edit" element={<EditMeal />} />
         <Route exact path="/games/game1" element={<Game1 />} />
         <Route
           exact

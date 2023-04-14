@@ -3,6 +3,8 @@ import { destroyAndGetUpdatedData } from 'utils/crud';
 import { foodsFromMeal, handleEditLink, onDeleteMeal } from './utils';
 import FoodTable from 'components/utils/Table/Table';
 import { handleFoodRowChange } from 'components/foods/utils';
+import { Button } from 'material-ui';
+import { Link } from 'react-router-dom';
 
 const attrs = ['name', 'calories', 'amount', 'proteins', 'carbs', 'fats'];
 
@@ -49,6 +51,11 @@ const Table = ({ data, setData, classes }) => {
 
             <div>
               <button onClick={() => deleteMeal(meal)}>Delete</button>
+              <Link to={`/meals/edit/${meal._id}`} className={classes.link}>
+                <Button variant="contained" className={classes.newMealButton}>
+                  Edit
+                </Button>
+              </Link>
             </div>
           </div>
         );
